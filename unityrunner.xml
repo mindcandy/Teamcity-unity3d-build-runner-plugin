@@ -80,7 +80,10 @@
     <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/openapi.jar"/>
     <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/spring.jar"/>
     <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/util.jar"/>
-      <pathelement location="${basedir}/lib/commons-lang3-3.1.jar"/>
+  </path>
+    
+  <path id="library.classpath">
+      <pathelement location="${basedir}/lib/commons-io-2.1.jar"/>
   </path>
   
   <path id="library.teamcity_third-party_server.classpath">
@@ -184,8 +187,8 @@
   
   
   <property name="compiler.args.unityrunner-agent" value="${compiler.args}"/>
-  
-  <property name="unityrunner-agent.output.dir" value="${module.unityrunner-agent.basedir}/out/production/unityrunner-agent"/>
+  <property name="unityrunner-agent.relative.output.dir" value="out/production/unityrunner-agent"/>
+  <property name="unityrunner-agent.output.dir" value="${module.unityrunner-agent.basedir}/${unityrunner-agent.relative.output.dir}"/>
   <property name="unityrunner-agent.testoutput.dir" value="${module.unityrunner-agent.basedir}/out/test/unityrunner-agent"/>
   
   <path id="unityrunner-agent.module.bootclasspath">
@@ -196,6 +199,7 @@
     <path refid="library.teamcity_open_api_agent.classpath"/>
     <path refid="library.teamcity_open_api_common.classpath"/>
     <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
     <pathelement location="${unityrunner-common.output.dir}"/>
   </path>
   
@@ -204,6 +208,7 @@
     <path refid="library.teamcity_open_api_agent.classpath"/>
     <path refid="library.teamcity_open_api_common.classpath"/>
     <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
     <path refid="unityrunner-common.runtime.production.module.classpath"/>
   </path>
   
@@ -212,9 +217,9 @@
     <path refid="library.teamcity_open_api_agent.classpath"/>
     <path refid="library.teamcity_open_api_common.classpath"/>
     <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
     <pathelement location="${unityrunner-common.testoutput.dir}"/>
     <pathelement location="${unityrunner-common.output.dir}"/>
-      <pathelement location="${basedir}/lib/"/>
   </path>
   
   <path id="unityrunner-agent.runtime.module.classpath">
@@ -223,6 +228,7 @@
     <path refid="library.teamcity_open_api_agent.classpath"/>
     <path refid="library.teamcity_open_api_common.classpath"/>
     <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
     <path refid="unityrunner-common.runtime.module.classpath"/>
   </path>
   

@@ -17,11 +17,14 @@
                                  plugin.descriptor.file="${basedir}/teamcity-plugin.xml"
                                  plugin.version="${plugin.version}">
             <agent-additional-files>
-                <fileset dir="${unityrunner-agent.output.dir}" id="agent-additional-files">
-                    <include name="**/*.exe"></include>
-                    <include name="**/*.config"></include>
+                <fileset dir="${basedir}" id="agent-additional-files">
+                    <include name="${unityrunner-agent.relative.output.dir}/*.exe"></include>
+                    <include name="${unityrunner-agent.relative.output.dir}/*.config"></include>
+                    <include name="lib/*.jar"/>
+                    <exclude name="lib/*maven-ant-tasks*"/>
                 </fileset>
             </agent-additional-files>
+
         </package.teamcity.plugin>
     </target>
 
@@ -51,7 +54,7 @@
     </target>
 
     <artifact:dependencies filesetId="dependency.fileset">
-        <dependency groupId="org.apache.commons" artifactId="commons-lang3" version="3.0"/>
+        <dependency groupId="commons-io" artifactId="commons-io" version="2.1"/>
     </artifact:dependencies>
 
     <copy todir="${basedir}/lib">
