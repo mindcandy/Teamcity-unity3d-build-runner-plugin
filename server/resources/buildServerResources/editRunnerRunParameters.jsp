@@ -11,15 +11,9 @@
     </th>
     <td>
          <props:checkboxProperty name="argument.batch_mode"/>
-    </td>
-</tr>
-
-<tr>
-    <th>
-        <label for="argument.execute_method">Execute method: </label>
-    </th>
-    <td>
-        <props:textProperty name="argument.execute_method" style="width:6em;" maxlength="12"/>
+         <span class="smallNote">
+             Run Unity in batch mode.
+         </span>
     </td>
 </tr>
 
@@ -29,6 +23,53 @@
     </th>
     <td>
         <props:checkboxProperty name="argument.no_graphics"/>
+        <span class="smallNote">
+             When running in batch mode, do not initialize graphics device at all.
+             This makes it possible to run your automated workflows on machines that don't even have a GPU.
+        </span>
+    </td>
+</tr>
+
+<tr>
+    <th>
+        <label for="argument.project_path">Project path: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.project_path" style="width:32em;"/>
+        <span class="smallNote">
+             Open the project at the given path.
+        </span>
+    </td>
+</tr>
+
+<props:selectSectionProperty name="argument.build_player" title="Build player:">
+    <props:selectSectionPropertyContent value="" caption="<Don't build player>"/>
+    <props:selectSectionPropertyContent value="buildWindowsPlayer" caption="Windows Player"/>
+    <props:selectSectionPropertyContent value="buildOSXPlayer" caption="OSX Player"/>
+    <props:selectSectionPropertyContent value="buildWebPlayer" caption="Web Player" />
+</props:selectSectionProperty>
+
+<tr>
+    <th>
+        <label for="argument.build_path">Build path: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.build_path" style="width:32em;"/>
+        <span class="smallNote">
+             Build output path.
+        </span>
+    </td>
+</tr>
+
+<tr>
+    <th>
+        <label for="argument.execute_method">Execute method: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.execute_method" style="width:32em;"/>
+        <span class="smallNote">
+             Execute the static method as soon as Unity is started and the project folder has been opened.
+        </span>
     </td>
 </tr>
 
@@ -38,15 +79,8 @@
     </th>
     <td>
         <props:checkboxProperty name="argument.quit"/>
+        <span class="smallNote">
+             Quit Unity cleanly upon finishing execution of other command line arguments.
+        </span>
     </td>
 </tr>
-
-<tr>
-    <th>
-        <label for="argument.project_path">Project path: </label>
-    </th>
-    <td>
-        <props:textProperty name="argument.project_path"/>
-    </td>
-</tr>
-

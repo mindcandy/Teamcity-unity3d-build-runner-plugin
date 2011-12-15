@@ -20,7 +20,7 @@ public class Parameters
 
     boolean getBooleanParameter(String name)
     {
-        if(parameters.get(name) == null || parameters.get(name) != "true")
+        if(parameters.get(name) == null || parameters.get(name).equals("true") == false)
             return false;
 
         return true;
