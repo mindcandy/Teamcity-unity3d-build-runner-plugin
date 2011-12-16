@@ -9,9 +9,10 @@ import java.util.Map;
  * Time: 15:14
  * To change this template use File | Settings | File Templates.
  */
+
 public class Parameters
 {
-    final private Map<String, String> parameters;
+    private final Map<String, String> parameters;
 
     public Parameters(Map<String, String> parameters)
     {
