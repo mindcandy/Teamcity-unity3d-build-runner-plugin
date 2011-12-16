@@ -26,7 +26,7 @@ public class UnityRunnerBuildService extends CommandLineBuildService
     public void afterInitialized()
     {
         config = createConfig();
-        runner = new UnityRunner(config, getLogger());
+        runner = new UnityRunner(config, new LogParser(getLogger()));
 
         runnerThread = new Thread(runner);
         runnerThread.start();
@@ -64,5 +64,11 @@ public class UnityRunnerBuildService extends CommandLineBuildService
     {
         runner.stop();
         return super.interrupt();
+    }
+
+    @Override
+    public void afterProcessFinished()
+    {
+        runner.stop();
     }
 }

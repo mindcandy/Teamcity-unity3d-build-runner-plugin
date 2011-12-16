@@ -1,11 +1,8 @@
 package unityRunner.agent;
 
-import jetbrains.buildServer.messages.BuildMessage1;
-import jetbrains.buildServer.messages.Status;
 import org.apache.commons.io.input.Tailer;
 
 import java.io.File;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +17,12 @@ public class UnityRunner implements Runnable
 {
     final UnityRunnerConfiguration configuration;
     private boolean stop = false;
-    jetbrains.buildServer.agent.BuildProgressLogger logger;
+    private final LogParser logParser;
 
-    UnityRunner(UnityRunnerConfiguration configuration, jetbrains.buildServer.agent.BuildProgressLogger logger)
+    UnityRunner(UnityRunnerConfiguration configuration, LogParser logParser)
     {
         this.configuration = configuration;
-        this.logger = logger;
+        this.logParser = logParser;
     }
 
     List<String> getArgs()
@@ -100,13 +97,7 @@ public class UnityRunner implements Runnable
 
     void logMessage(String message)
     {
-        logger.logMessage(new BuildMessage1("DefaultMessage", "Text", Status.NORMAL, getTimestamp(), message));
-    }
-
-    private Timestamp getTimestamp()
-    {
-        java.util.Date date= new java.util.Date();
-        return new Timestamp(date.getTime());
+        logParser.log(message);
     }
 }
 
