@@ -20,6 +20,6 @@ public class ReplaceGUIBlock extends Block
     @Override
     public boolean matchesEnd(String message)
     {
-        return message.matches(end) == false;
+        return !message.matches(end);
     }
 }

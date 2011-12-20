@@ -7,10 +7,24 @@
 
 <tr>
     <th>
+        <label for="teamcity.build.workingDir">Working Directory: </label>
+    </th>
+    <td>
+        <props:textProperty name="teamcity.build.workingDir" style="width:32em;"/>
+        <span class="error" id="error_teamcity.build.workingDir"></span>
+        <span class="smallNote">
+             Optional, specify if differs from the checkout directory.
+        </span>
+    </td>
+</tr>
+
+<tr>
+    <th>
         <label for="argument.batch_mode">Batch mode: </label>
     </th>
     <td>
          <props:checkboxProperty name="argument.batch_mode"/>
+         <span class="error" id="error_argument.batch_mode"></span>
          <span class="smallNote">
              Run Unity in batch mode.
          </span>
@@ -23,6 +37,7 @@
     </th>
     <td>
         <props:checkboxProperty name="argument.no_graphics"/>
+        <span class="error" id="error_argument.no_graphics"></span>
         <span class="smallNote">
              When running in batch mode, do not initialize graphics device at all.
              This makes it possible to run your automated workflows on machines that don't even have a GPU.
@@ -36,6 +51,7 @@
     </th>
     <td>
         <props:textProperty name="argument.project_path" style="width:32em;"/>
+        <span class="error" id="error_argument.project_path"></span>
         <span class="smallNote">
              Open the project at the given path.
         </span>
@@ -55,6 +71,7 @@
     </th>
     <td>
         <props:textProperty name="argument.build_path" style="width:32em;"/>
+        <span class="error" id="error_argument.build_path"></span>
         <span class="smallNote">
              Build output path.
         </span>
@@ -67,6 +84,7 @@
     </th>
     <td>
         <props:textProperty name="argument.execute_method" style="width:32em;"/>
+        <span class="error" id="error_argument.execute_method"></span>
         <span class="smallNote">
              Execute the static method as soon as Unity is started and the project folder has been opened.
         </span>
@@ -79,6 +97,7 @@
     </th>
     <td>
         <props:checkboxProperty name="argument.quit"/>
+        <span class="error" id="error_argument.quit"></span>
         <span class="smallNote">
              Quit Unity cleanly upon finishing execution of other command line arguments.
         </span>

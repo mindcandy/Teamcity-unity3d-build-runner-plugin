@@ -1,7 +1,5 @@
 package unityRunner.server;
 
-import com.intellij.openapi.util.text.StringUtil;
-import jetbrains.buildServer.log.Loggers;
 import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import jetbrains.buildServer.serverSide.RunType;
@@ -9,10 +7,7 @@ import jetbrains.buildServer.serverSide.RunTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 import unityRunner.common.PluginConstants;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class UnityRunnerRunType extends RunType {
     public UnityRunnerRunType(final RunTypeRegistry registry) {
@@ -36,6 +31,25 @@ public class UnityRunnerRunType extends RunType {
         return PluginConstants.RUNNER_DESCRIPTION;
     }
 
+
+    @Override
+    @NotNull
+    public String describeParameters(@NotNull final Map<String, String> parameters)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Project: ");
+        sb.append(parameters.get(PluginConstants.PROPERTY_PROJECT_PATH));
+        sb.append(" \n");
+        sb.append("Build Player: ");
+        sb.append(parameters.get(PluginConstants.PROPERTY_BUILD_PLAYER));
+        sb.append(" \n");
+        sb.append("Output directory: ");
+        sb.append(parameters.get(PluginConstants.PROPERTY_BUILD_PATH));
+
+        return sb.toString();
+    }
+
+
     @Override
     public PropertiesProcessor getRunnerPropertiesProcessor()
     {
@@ -57,10 +71,10 @@ public class UnityRunnerRunType extends RunType {
 
             private boolean noBuildTarget(Map<String, String> properties)
             {
-                if(properties.containsKey(PluginConstants.PROPERTY_BUILD_PLAYER) == true &&
-                   properties.get(PluginConstants.PROPERTY_BUILD_PLAYER).equals("") == false)
+                if(properties.containsKey(PluginConstants.PROPERTY_BUILD_PLAYER) &&
+                        !properties.get(PluginConstants.PROPERTY_BUILD_PLAYER).equals(""))
                 {
-                    if(properties.containsKey(PluginConstants.PROPERTY_BUILD_PATH) == false ||
+                    if(!properties.containsKey(PluginConstants.PROPERTY_BUILD_PATH) ||
                        properties.get(PluginConstants.PROPERTY_BUILD_PATH).equals(""))
                     {
                         return true;
@@ -84,6 +98,11 @@ public class UnityRunnerRunType extends RunType {
 
     @Override
     public Map<String, String> getDefaultRunnerProperties() {
-        return null;
+        Map<String,String> defaults = new HashMap<String, String>();
+
+        defaults.put(PluginConstants.PROPERTY_QUIT, "true");
+        defaults.put(PluginConstants.PROPERTY_BATCH_MODE, "true");
+
+        return defaults;
     }
 }

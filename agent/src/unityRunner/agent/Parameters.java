@@ -21,7 +21,7 @@ public class Parameters
 
     boolean getBooleanParameter(String name)
     {
-        if(parameters.get(name) == null || parameters.get(name).equals("true") == false)
+        if(parameters.get(name) == null || !parameters.get(name).equals("true"))
             return false;
 
         return true;

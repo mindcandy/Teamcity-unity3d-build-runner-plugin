@@ -4,19 +4,44 @@
 
 <div class="parameter">
   <c:choose>
-    <c:when test="${not empty propertiesBean.properties['script.namespaces']}">
-      Additional namespaces: <strong><props:displayValue name="script.namespaces" /></strong>
+    <c:when test="${not empty propertiesBean.properties['teamcity.build.workingDir']}">
+      Working Directory: <strong><props:displayValue name="teamcity.build.workingDir" /></strong>
     </c:when>
   </c:choose>
 </div>
+
+
+<div class="parameter">
+  Batch Mode: <strong><props:displayValue name="argument.batch_mode" /></strong>
+</div>
+
+<div class="parameter">
+  No Graphics: <strong><props:displayValue name="argument.no_graphics" /></strong>
+</div>
+
+<div class="parameter">
+  Project Path: <strong><props:displayValue name="argument.project_path" /></strong>
+</div>
+
+<div class="parameter">
+  Build player: <strong><props:displayValue name="argument.build_player" /></strong>
+</div>
+
+
+<div class="parameter">
+  Build Path: <strong><props:displayValue name="argument.build_path" /></strong>
+</div>
+
+
 <div class="parameter">
   <c:choose>
-    <c:when test="${not empty propertiesBean.properties['script.references']}">
-      Additional references: <strong><props:displayValue name="script.references" /></strong>
+    <c:when test="${not empty propertiesBean.properties['argument.execute_method']}">
+      Execute Method: <strong><props:displayValue name="argument.execute_method" /></strong>
     </c:when>
   </c:choose>
 </div>
 
 <div class="parameter">
-  C# code: <strong><props:displayValue name="script.content" /></strong>
+  Quit after build: <strong><props:displayValue name="argument.quit" /></strong>
 </div>
+

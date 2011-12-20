@@ -32,7 +32,7 @@ public class LogParser
     public void log(String message)
     {
         // Check if new message is the end of the current block (if it exists).
-        if(blockStack.empty() == false)
+        if(!blockStack.empty())
         {
             if(blockStack.peek().matchesEnd(message))
             {
@@ -64,7 +64,7 @@ public class LogParser
         }
 
         // There is not match. Just log a regular message.
-        if(match == false)
+        if(!match)
             log(message, Line.Type.Normal);
             
     }

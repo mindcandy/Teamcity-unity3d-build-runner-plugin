@@ -15,7 +15,7 @@ public class Line
         Warning,
         Failure,
         Error
-    };
+    }
 
     protected String regex;
     protected Type type;

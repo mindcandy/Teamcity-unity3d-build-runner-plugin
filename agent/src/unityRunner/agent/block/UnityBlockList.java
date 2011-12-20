@@ -13,7 +13,7 @@ import java.util.List;
 public class UnityBlockList
 {
     static public List<Block> blocks = Arrays.asList((Block) new PlayerStatisticsBlock(),
-                                                     (Block) new CompileBlock(),
-                                                     (Block) new ReplaceGUIBlock(),
-                                                     (Block) new RefreshBlock());
+                                                     (Block) new CompileBlock());
+    //                                                     (Block) new ReplaceGUIBlock(),
+    //                                                 (Block) new RefreshBlock());
 }

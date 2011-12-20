@@ -35,20 +35,20 @@ public class UnityRunner implements Runnable
         if(configuration.noGraphics)
             args.add("-nographics");
 
-        if(configuration.projectPath != "")
+        if(!configuration.projectPath.equals(""))
         {
             args.add("-projectPath");
             args.add(configuration.projectPath);
         }
 
-        if(configuration.executeMethod != "")
+        if(!configuration.executeMethod.equals(""))
         {
             args.add("-executeMethod");
             args.add(configuration.executeMethod);
         }
 
 
-        if(configuration.buildPlayer != "")
+        if(!configuration.buildPlayer.equals(""))
         {
             args.add(String.format("-%s", configuration.buildPlayer));
             args.add(String.format("%s", configuration.buildPath));
@@ -68,7 +68,7 @@ public class UnityRunner implements Runnable
         TailerListener listener = new TailerListener(this);
         Tailer tailer = Tailer.create(file, listener);
 
-        while(stop == false)
+        while(!stop)
         {
         }
 
