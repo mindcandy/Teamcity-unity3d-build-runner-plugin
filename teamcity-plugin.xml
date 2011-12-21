@@ -5,6 +5,7 @@
     <name>unityRunner</name>
     <display-name>unityRunner</display-name>
     <version>@version@</version>
+    <description>Build Runner for Unity3d</description>
   </info>
   <deployment use-separate-classloader="false"/>
 </teamcity-plugin>

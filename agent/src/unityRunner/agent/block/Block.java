@@ -39,7 +39,7 @@ public class Block {
     {
         String blockName = name;
         if (matcher.groupCount() > 0) {
-            blockName = matcher.group(1);
+            blockName = name + ": " + matcher.group(1);
         }
         return new MatchedBlock(this, blockName, beginMatchType);
     }
