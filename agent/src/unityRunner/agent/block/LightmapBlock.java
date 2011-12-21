@@ -6,12 +6,10 @@ package unityRunner.agent.block;
  * Date: 20/12/2011
  * Time: 16:32
  */
-public class LightmapBlock extends Block
-{
-    public LightmapBlock()
-    {
+public class LightmapBlock extends Block {
+    public LightmapBlock() {
         name = "Lightmap";
-        beginning = "---- Lightmapping Start for .* ----";
-        end = "---- Lightmapping End for .* ----";
+        beginning = "---- Lightmapping Start for (.*) ----";
+        end = "---- Lightmapping End for (.*) ----";
     }
 }

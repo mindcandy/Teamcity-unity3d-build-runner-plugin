@@ -78,6 +78,38 @@
     </td>
 </tr>
 
+
+
+
+<tr>
+    <th>
+        <label for="argument.clear_output_before">Clear output before: </label>
+    </th>
+    <td>
+         <props:checkboxProperty name="argument.clear_output_before"/>
+         <span class="error" id="error_argument.clear_output_before"></span>
+         <span class="smallNote">
+             Clear output directory before running build.
+         </span>
+    </td>
+</tr>
+
+
+      
+<tr>
+    <th>
+        <label for="argument.clean_output_after">Clean output after: </label>
+    </th>
+    <td>
+         <props:checkboxProperty name="argument.clean_output_after"/>
+         <span class="error" id="error_argument.clean_output_after"></span>
+         <span class="smallNote">
+             Clean output directory of .meta and .svn files after running build.
+         </span>
+    </td>
+</tr>
+
+
 <tr>
     <th>
         <label for="argument.execute_method">Execute method: </label>

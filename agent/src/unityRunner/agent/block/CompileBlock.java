@@ -7,10 +7,8 @@ package unityRunner.agent.block;
  * Time: 16:31
  * To change this template use File | Settings | File Templates.
  */
-public class CompileBlock  extends Block
-{
-    public CompileBlock()
-    {
+public class CompileBlock extends Block {
+    public CompileBlock() {
         beginning = "-----Compiler Commandline Arguments:";
         end = "-----EndCompilerOutput---------------";
 

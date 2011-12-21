@@ -7,10 +7,8 @@ package unityRunner.agent.block;
  * Time: 14:34
  * To change this template use File | Settings | File Templates.
  */
-public class PlayerStatisticsBlock extends Block
-{
-    public PlayerStatisticsBlock()
-    {
+public class PlayerStatisticsBlock extends Block {
+    public PlayerStatisticsBlock() {
         beginning = "\\*\\*\\*Player size statistics\\*\\*\\*";
         end = "Unloading.*";
 

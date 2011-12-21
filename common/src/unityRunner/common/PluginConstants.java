@@ -6,20 +6,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface PluginConstants {
-    @NonNls String RUN_TYPE = "unityRunner";
-    @NonNls String RUNNER_DISPLAY_NAME = "Unity";
-    String RUNNER_DESCRIPTION = "Unity runner";
-    String OUTPUT_FILE_NAME = "UnityOutput.html";
+    @NonNls final String RUN_TYPE = "unityRunner";
+    @NonNls final String RUNNER_DISPLAY_NAME = "Unity";
+    final String RUNNER_DESCRIPTION = "Unity runner";
+    final String OUTPUT_FILE_NAME = "UnityOutput.html";
 
-    String PROPERTY_BATCH_MODE = "argument.batch_mode";
-    String PROPERTY_EXECUTE_METHOD = "argument.execute_method";
-    String PROPERTY_NO_GRAPHICS = "argument.no_graphics";
-    String PROPERTY_QUIT = "argument.quit";
-    String PROPERTY_PROJECT_PATH = "argument.project_path";
-    String PROPERTY_BUILD_PATH = "argument.build_path";
-    String PROPERTY_BUILD_PLAYER = "argument.build_player";
+    final String PROPERTY_BATCH_MODE = "argument.batch_mode";
+    final String PROPERTY_EXECUTE_METHOD = "argument.execute_method";
+    final String PROPERTY_NO_GRAPHICS = "argument.no_graphics";
+    final String PROPERTY_QUIT = "argument.quit";
+    final String PROPERTY_PROJECT_PATH = "argument.project_path";
+    final String PROPERTY_BUILD_PATH = "argument.build_path";
+    final String PROPERTY_BUILD_PLAYER = "argument.build_player";
+
+    final String PROPERTY_CLEAR_OUTPUT_BEFORE = "argument.clear_output_before";
+    final String PROPERTY_CLEAN_OUTPUT_AFTER = "argument.clean_output_after";
     
-    List<String> PROPERTY_BUILD_TARGETS = Arrays.asList("buildWindowsPlayer", "buildOSXPlayer!", "buildWebPlayer");
+    final List<String> PROPERTY_BUILD_TARGETS = Arrays.asList("buildWindowsPlayer", "buildOSXPlayer!", "buildWebPlayer");
 
-    String REPORT_TAB_CODE = "unityReportTab";
+    final String REPORT_TAB_CODE = "unityReportTab";
 }

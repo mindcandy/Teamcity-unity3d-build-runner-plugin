@@ -45,3 +45,13 @@
   Quit after build: <strong><props:displayValue name="argument.quit" /></strong>
 </div>
 
+
+
+<div class="parameter">
+  Clear Output Before: <strong><props:displayValue name="argument.clear_output_before" /></strong>
+</div>
+
+
+<div class="parameter">
+  Clean Output After: <strong><props:displayValue name="argument.clean_output_after" /></strong>
+</div>

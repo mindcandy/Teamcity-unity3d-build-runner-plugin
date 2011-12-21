@@ -18,7 +18,6 @@ package unityRunner.agent;
 
 import jetbrains.buildServer.agent.AgentBuildRunnerInfo;
 import jetbrains.buildServer.agent.BuildAgentConfiguration;
-import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
 import jetbrains.buildServer.agent.runner.CommandLineBuildService;
 import jetbrains.buildServer.agent.runner.CommandLineBuildServiceFactory;
 import org.jetbrains.annotations.NotNull;
@@ -27,10 +26,8 @@ import unityRunner.common.PluginConstants;
 import java.io.File;
 
 public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFactory {
-    private final ArtifactsWatcher artifactsWatcher;
 
-    public UnityRunnerBuildServiceFactory(ArtifactsWatcher artifactsWatcher) {
-        this.artifactsWatcher = artifactsWatcher;
+    public UnityRunnerBuildServiceFactory() {
     }
 
     @NotNull
@@ -47,8 +44,7 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
                 return PluginConstants.RUN_TYPE;
             }
 
-            public boolean canRun(@NotNull BuildAgentConfiguration agentConfiguration)
-            {
+            public boolean canRun(@NotNull BuildAgentConfiguration agentConfiguration) {
                 setupConfigurationParameters(agentConfiguration);
                 return agentConfiguration.getSystemInfo().isWindows() || agentConfiguration.getSystemInfo().isMac();
             }
@@ -57,29 +53,23 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
              * Setup agent configuration parameters.
              * @param agentConfiguration build agent configuration.
              */
-            public void setupConfigurationParameters(@NotNull BuildAgentConfiguration agentConfiguration)
-            {
+            public void setupConfigurationParameters(@NotNull BuildAgentConfiguration agentConfiguration) {
                 String unityPath = null;
                 String unityLog = null;
 
                 // Get unity path and editor log path for supported platforms.
-                if(agentConfiguration.getSystemInfo().isWindows())
-                {
+                if (agentConfiguration.getSystemInfo().isWindows()) {
                     unityPath = UnityRunnerConfiguration.getUnityPath(UnityRunnerConfiguration.Platform.Windows);
-                    unityLog  = UnityRunnerConfiguration.getUnityLogPath(UnityRunnerConfiguration.Platform.Windows);
-                }
-                else if(agentConfiguration.getSystemInfo().isMac())
-                {
+                    unityLog = UnityRunnerConfiguration.getUnityLogPath(UnityRunnerConfiguration.Platform.Windows);
+                } else if (agentConfiguration.getSystemInfo().isMac()) {
                     unityPath = UnityRunnerConfiguration.getUnityPath(UnityRunnerConfiguration.Platform.Mac);
-                    unityLog  = UnityRunnerConfiguration.getUnityLogPath(UnityRunnerConfiguration.Platform.Mac);
+                    unityLog = UnityRunnerConfiguration.getUnityLogPath(UnityRunnerConfiguration.Platform.Mac);
                 }
 
-                if(unityPath != null && unityLog != null)
-                {
+                if (unityPath != null && unityLog != null) {
                     File file = new File(unityPath);
 
-                    if(file.exists())
-                    {
+                    if (file.exists()) {
                         agentConfiguration.addConfigurationParameter("unity.exe", unityPath);
                         // We need to find a way to automatically get Unity version number.c
                         agentConfiguration.addConfigurationParameter("unity.version", "3.4.2");

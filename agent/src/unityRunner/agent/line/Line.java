@@ -7,10 +7,8 @@ package unityRunner.agent.line;
  * Time: 16:48
  * To change this template use File | Settings | File Templates.
  */
-public class Line
-{
-    public enum Type
-    {
+public class Line {
+    public enum Type {
         Normal,
         Warning,
         Failure,
@@ -19,20 +17,17 @@ public class Line
 
     protected String regex;
     protected Type type;
-    
-    public Line(String regex, Type type)
-    {
+
+    public Line(String regex, Type type) {
         this.regex = regex;
         this.type = type;
     }
 
-    public boolean matches(String message)
-    {
+    public boolean matches(String message) {
         return message.matches(regex);
     }
 
-    public Type getType()
-    {
+    public Type getType() {
         return type;
     }
 }

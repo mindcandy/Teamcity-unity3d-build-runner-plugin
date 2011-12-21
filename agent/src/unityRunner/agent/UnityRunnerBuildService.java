@@ -15,9 +15,11 @@ public class UnityRunnerBuildService extends BuildServiceAdapter {
     @Override
     public void afterInitialized() {
         runner = new UnityRunner(getConfig(), new LogParser(getLogger()));
+    }
 
-        Thread runnerThread = new Thread(runner);
-        runnerThread.start();
+    @Override
+    public void beforeProcessStarted() {
+        runner.start();
     }
 
     @NotNull
@@ -40,11 +42,12 @@ public class UnityRunnerBuildService extends BuildServiceAdapter {
 
     @Override
     public void afterProcessFinished() {
+        // called when process is finished, BEFORE getting return code
         runner.stop();
     }
 
     @Override
     public void afterProcessSuccessfullyFinished() {
-        runner.stop();
+        runner.optionallyCleanupAfter();
     }
 }

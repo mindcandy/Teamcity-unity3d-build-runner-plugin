@@ -9,8 +9,7 @@ import java.util.List;
  * Date: 15/12/2011
  * Time: 16:51
  */
-public class UnityLineList
-{
+public class UnityLineList {
     public static List<Line> lines = Arrays.asList(
 
             // Warnings

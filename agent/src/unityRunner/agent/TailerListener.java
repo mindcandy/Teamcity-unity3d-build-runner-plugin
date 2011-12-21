@@ -10,16 +10,14 @@ import org.apache.commons.io.input.TailerListenerAdapter;
  * To change this template use File | Settings | File Templates.
  */
 
-public class TailerListener extends TailerListenerAdapter
-{
+public class TailerListener extends TailerListenerAdapter {
     private final UnityRunner runner;
-    public TailerListener(UnityRunner runner)
-    {
+
+    public TailerListener(UnityRunner runner) {
         this.runner = runner;
     }
 
-    public void handle(String line)
-    {
+    public void handle(String line) {
         runner.logMessage(line);
     }
 }

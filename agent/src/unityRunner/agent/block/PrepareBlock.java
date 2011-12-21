@@ -8,7 +8,7 @@ package unityRunner.agent.block;
  */
 public class PrepareBlock extends Block {
 
-    public PrepareBlock () {
+    public PrepareBlock() {
         name = "Prepare Build";
         beginning = "---- PrepareBuild Start ----";
         end = "---- PrepareBuild End ----";
