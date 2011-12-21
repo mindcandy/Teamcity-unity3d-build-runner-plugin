@@ -35,7 +35,7 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
     @NotNull
     public CommandLineBuildService createService() {
-        return new UnityRunnerBuildService(artifactsWatcher);
+        return new UnityRunnerBuildService();
     }
 
     @NotNull

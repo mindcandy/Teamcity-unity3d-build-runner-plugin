@@ -8,12 +8,14 @@ import java.util.List;
  * User: clement.dagneau
  * Date: 16/12/2011
  * Time: 09:52
- * To change this template use File | Settings | File Templates.
  */
 public class UnityBlockList
 {
-    static public List<Block> blocks = Arrays.asList((Block) new PlayerStatisticsBlock(),
-                                                     (Block) new CompileBlock());
+    static public List<Block> blocks = Arrays.asList(
+            new PlayerStatisticsBlock(),
+            new CompileBlock(),
+            new PrepareBlock(),
+            new LightmapBlock());
     //                                                     (Block) new ReplaceGUIBlock(),
     //                                                 (Block) new RefreshBlock());
 }

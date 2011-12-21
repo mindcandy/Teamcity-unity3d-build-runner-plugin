@@ -206,7 +206,9 @@
         <root url="jar://$TeamCityDistribution$/devPackage/common-api.jar!/" />
         <root url="jar://$TeamCityDistribution$/devPackage/server-api.jar!/" />
       </CLASSES>
-      <JAVADOC />
+      <JAVADOC>
+        <root url="jar://$TeamCityDistribution$/devPackage/javadoc/openApi-help.jar!/" />
+      </JAVADOC>
       <SOURCES />
     </library>
     <library name="TeamcityLibs">

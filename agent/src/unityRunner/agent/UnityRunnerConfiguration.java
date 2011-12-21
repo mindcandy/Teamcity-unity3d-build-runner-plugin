@@ -1,5 +1,10 @@
 package unityRunner.agent;
 
+import jetbrains.buildServer.agent.BuildAgentConfiguration;
+import unityRunner.common.PluginConstants;
+
+import java.util.Map;
+
 /**
  * Created by IntelliJ IDEA.
  * User: clement.dagneau
@@ -33,23 +38,21 @@ public class UnityRunnerConfiguration
     final static String windowsLogPath = System.getenv("LOCALAPPDATA") + "\\Unity\\Editor\\Editor.log";
     final static String macLogPath = System.getProperty("user.home") + "/Library/Logs/Unity/Editor.log";
 
-    public UnityRunnerConfiguration(boolean quit,
-                                    boolean batchMode,
-                                    boolean noGraphics,
-                                    String projectPath,
-                                    String executeMethod,
-                                    String buildPlayer,
-                                    String buildPath,
-                                    Platform platform)
+    public UnityRunnerConfiguration(BuildAgentConfiguration agentConfiguration,
+                                    Map<String,String> runnerParameters)
     {
-        this.quit = quit;
-        this.batchMode = batchMode;
-        this.noGraphics = noGraphics;
-        this.projectPath = projectPath;
-        this.executeMethod = executeMethod;
-        this.buildPlayer = buildPlayer;
-        this.buildPath = buildPath;
-        this.platform = platform;
+        if (agentConfiguration.getSystemInfo().isWindows()) {
+            platform = UnityRunnerConfiguration.Platform.Windows;
+        } else {
+            platform = UnityRunnerConfiguration.Platform.Mac;
+        }
+        quit = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_QUIT);
+        batchMode = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_BATCH_MODE);
+        noGraphics = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_NO_GRAPHICS);
+        projectPath = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_PROJECT_PATH);
+        executeMethod = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_EXECUTE_METHOD);
+        buildPlayer = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PLAYER);
+        buildPath = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PATH);
     }
 
     String getUnityPath()

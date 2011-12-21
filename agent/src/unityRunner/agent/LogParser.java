@@ -15,7 +15,6 @@ import java.util.Stack;
  * User: clement.dagneau
  * Date: 15/12/2011
  * Time: 16:02
- * To change this template use File | Settings | File Templates.
  */
 
 
@@ -65,7 +64,9 @@ public class LogParser
 
         // There is not match. Just log a regular message.
         if(!match)
+        {
             log(message, Line.Type.Normal);
+        }
             
     }
     

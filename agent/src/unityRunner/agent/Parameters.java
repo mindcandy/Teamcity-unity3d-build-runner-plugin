@@ -3,34 +3,22 @@ package unityRunner.agent;
 import java.util.Map;
 
 /**
- * Created by IntelliJ IDEA.
- * User: clement.dagneau
- * Date: 13/12/2011
- * Time: 15:14
- * To change this template use File | Settings | File Templates.
+ * Utility class for pulling data from parameter map
  */
 
-public class Parameters
+public final class Parameters
 {
-    private final Map<String, String> parameters;
-
-    public Parameters(Map<String, String> parameters)
+    static boolean getBoolean(Map<String,String> parameters, String name)
     {
-        this.parameters = parameters;
+        return !(parameters.get(name) == null || !parameters.get(name).equals("true"));
+
     }
 
-    boolean getBooleanParameter(String name)
+    static String getString(Map<String,String> parameters,String name)
     {
-        if(parameters.get(name) == null || !parameters.get(name).equals("true"))
-            return false;
-
-        return true;
-    }
-
-    String getStringParameter(String name)
-    {
-        if(parameters.get(name) == null)
+        if(parameters.get(name) == null) {
             return "";
+        }
 
         return parameters.get(name);
     }
