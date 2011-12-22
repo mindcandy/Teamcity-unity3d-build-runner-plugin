@@ -11,6 +11,7 @@ public class PlayerStatisticsBlock extends Block {
     public PlayerStatisticsBlock() {
         beginning = "\\*\\*\\*Player size statistics\\*\\*\\*";
         end = "Unloading.*";
+        endMatchType = MatchType.Exclusive;
 
         name = "Player statistics";
     }

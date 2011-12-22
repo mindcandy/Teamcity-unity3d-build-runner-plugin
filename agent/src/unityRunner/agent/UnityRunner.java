@@ -73,6 +73,9 @@ public class UnityRunner {
      * start the unity runner
      */
     public void start() {
+
+        logMessage("[Starting UnityRunner]");
+
         Thread runnerThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -91,6 +94,7 @@ public class UnityRunner {
      */
     private void tailLogFile() {
         initialise();
+        logMessage("[tailing log file]");
 
         File file = new File(configuration.getUnityLogPath());
         TailerListener listener = new TailerListener(this);
@@ -106,6 +110,8 @@ public class UnityRunner {
         }
 
         tailer.stop();
+        logMessage("[log tail process end]");
+
     }
 
     /**
@@ -113,6 +119,8 @@ public class UnityRunner {
      */
     public void stop() {
         stop = true;
+        logMessage("[Stop UnityRunner]");
+
     }
 
 
@@ -131,6 +139,8 @@ public class UnityRunner {
     }
 
     private void deleteLogFile(String path) {
+        logMessage("[delete old log file]");
+
         File logFile = new File(path);
 
         if (logFile.exists()) {

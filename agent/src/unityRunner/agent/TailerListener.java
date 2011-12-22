@@ -15,9 +15,42 @@ public class TailerListener extends TailerListenerAdapter {
 
     public TailerListener(UnityRunner runner) {
         this.runner = runner;
+        workAroundTailerBug = false;
     }
+    
+    private String firstLine;
+    private int lineCount;
+    private boolean workAroundTailerBug;
+    private int skipLineCount;
 
-    public void handle(String line) {
+    @Override
+    public void handle(String line) {        
+        lineCount++;
+               
+        if (workAroundTailerBug) {
+            // skip the ENTIRE FILE that will be regurgitated up until the point we saw before
+            if (lineCount < skipLineCount) {
+                return;
+            }
+
+            workAroundTailerBug = false;
+            runner.logMessage("WARNING: [SKIPPED SOME LINES TO WORK AROUND BUG IN TAILER]");
+        }
+        else if (lineCount == 0) {
+            firstLine = line;
+            runner.logMessage("[FIRST LOG LINE]");
+
+        }
+        else if (line.equals(firstLine)) {
+            // I think this is generally a bug!
+            // the ENTIRE file will be regurgitated to me now :(
+            // https://issues.apache.org/jira/browse/IO-279 is the bug for them to fix
+            workAroundTailerBug = true;
+            skipLineCount = lineCount - 1;
+            lineCount = 1;
+            runner.logMessage(String.format("WARNING: [WORKING AROUND BUG IN TAILER - skipping next %d lines]", skipLineCount));
+            return;
+        }
         runner.logMessage(line);
     }
 }
