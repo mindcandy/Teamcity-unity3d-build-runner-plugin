@@ -30,7 +30,8 @@ public class UnityRunnerBuildService extends BuildServiceAdapter {
 
     @NotNull
     private UnityRunnerConfiguration getConfig() {
-        return new UnityRunnerConfiguration(getAgentConfiguration(), getRunnerParameters());
+
+        return new UnityRunnerConfiguration(getAgentConfiguration(), getRunnerParameters(), getBuild());
     }
 
     @Override

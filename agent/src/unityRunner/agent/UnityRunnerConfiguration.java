@@ -1,5 +1,6 @@
 package unityRunner.agent;
 
+import jetbrains.buildServer.agent.AgentRunningBuild;
 import jetbrains.buildServer.agent.BuildAgentConfiguration;
 import org.apache.commons.io.FilenameUtils;
 import unityRunner.common.PluginConstants;
@@ -26,12 +27,14 @@ public class UnityRunnerConfiguration {
     final boolean noGraphics;
     final boolean clearBefore;
     final boolean cleanAfter;
+    final boolean useCleanedLog;
     final String projectPath;
     final String executeMethod;
     final String buildPlayer;
     final String buildPath;
 
     final Platform platform;
+    final java.io.File cleanedLogPath;
 
     final static String windowsUnityPath = "C:\\Program Files (x86)\\Unity\\Editor\\unity.exe";
     final static String macUnityPath = "/Applications/Unity/Unity.app/Contents/MacOS/Unity";
@@ -40,7 +43,9 @@ public class UnityRunnerConfiguration {
     final static String macLogPath = System.getProperty("user.home") + "/Library/Logs/Unity/Editor.log";
 
     public UnityRunnerConfiguration(BuildAgentConfiguration agentConfiguration,
-                                    Map<String, String> runnerParameters) {
+                                    Map<String, String> runnerParameters,
+                                    AgentRunningBuild agentRunningBuild) {
+
         if (agentConfiguration.getSystemInfo().isWindows()) {
             platform = UnityRunnerConfiguration.Platform.Windows;
         } else {
@@ -58,6 +63,12 @@ public class UnityRunnerConfiguration {
 
         clearBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE);
         cleanAfter = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER);
+
+        // set cleaned log path to %temp%/cleaned-%teamcity.build.id%.log
+        cleanedLogPath = new java.io.File(
+                agentRunningBuild.getBuildTempDirectory(),
+                String.format("cleaned-%d.log", agentRunningBuild.getBuildId()) );
+        useCleanedLog = true;
     }
 
     String getUnityPath() {
@@ -66,6 +77,18 @@ public class UnityRunnerConfiguration {
 
     String getUnityLogPath() {
         return getUnityLogPath(platform);
+    }
+    
+    String getCleanedLogPath() {
+        return cleanedLogPath.getPath();
+    }
+    
+    String getInterestedLogPath() {
+        if (useCleanedLog) {
+            return getCleanedLogPath();
+        } else {
+            return getUnityLogPath();
+        }
     }
 
     static String getUnityPath(Platform platform) {
