@@ -65,6 +65,11 @@ public class UnityRunner {
             args.add(configuration.executeMethod);
         }
 
+        if (configuration.useCleanedLog) {
+            args.add("-cleanedLogFile");
+            args.add(configuration.getCleanedLogPath());
+        }
+
         return args;
     }
 
@@ -94,9 +99,9 @@ public class UnityRunner {
      */
     private void tailLogFile() {
         initialise();
-        logMessage("[tailing log file]");
+        logMessage("[tailing log file: " + configuration.getInterestedLogPath() + "]");
 
-        File file = new File(configuration.getUnityLogPath());
+        File file = new File(configuration.getInterestedLogPath());
         TailerListener listener = new TailerListener(this);
         Tailer tailer = Tailer.create(file, listener);
 
@@ -135,16 +140,19 @@ public class UnityRunner {
 
 
     private void initialise() {
-        deleteLogFile(configuration.getUnityLogPath());
+        deleteLogFile(configuration.getInterestedLogPath());
     }
 
     private void deleteLogFile(String path) {
-        logMessage("[delete old log file]");
 
         File logFile = new File(path);
 
         if (logFile.exists()) {
-            logFile.delete();
+            logMessage("[delete old log file]");
+
+            if (!logFile.delete()) {
+                logMessage("[FAILED TO DELETE OLD LOG FILE]");
+            }
         }
     }
 

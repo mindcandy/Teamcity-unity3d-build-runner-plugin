@@ -18,6 +18,6 @@ public class ServerListener extends BuildServerAdapter {
 
   @Override
   public void serverStartup() {
-    Loggers.SERVER.info("Plugin '" + PluginConstants.RUN_TYPE + "'. Is running on server version " + myServer.getFullServerVersion() + ".");
+    Loggers.SERVER.info("Plugin '" + PluginConstants.RUN_TYPE + "' is running on server version " + myServer.getFullServerVersion() + ".");
   }
 }
