@@ -1,6 +1,7 @@
 package unityRunner.agent;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
 import org.apache.commons.io.input.Tailer;
 import org.jetbrains.annotations.NotNull;
 
@@ -78,16 +79,17 @@ public class UnityRunner {
      * start the unity runner
      */
     public void start() {
-
-        logMessage("[Starting UnityRunner]");
-
-        Thread runnerThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                tailLogFile();
-            }
-        });
-        runnerThread.start();
+//
+//        logMessage("[Starting UnityRunner]");
+//
+//        Thread runnerThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                tailLogFile();
+//            }
+//        });
+//        runnerThread.start();
+        logMessage("[Unity runner is started, but waiting until end to cat log file]");
 
         if (configuration.clearBefore) {
             clearBefore();
@@ -120,11 +122,39 @@ public class UnityRunner {
     }
 
     /**
+     * cat the log file instead of tailing it
+     */
+    private void catLogFile() {
+        File file = new File(configuration.getInterestedLogPath());
+
+        // for each line
+        try {
+            LineIterator iterator = FileUtils.lineIterator(file);
+            try {
+                while (iterator.hasNext()) {
+                    String line = iterator.nextLine();
+
+                    // log the message
+                    logMessage(line);
+                }
+            } finally {
+                iterator.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    /**
      * stop the runner
      */
     public void stop() {
-        stop = true;
-        logMessage("[Stop UnityRunner]");
+        catLogFile();
+//        stop = true;
+//        logMessage("[Stop UnityRunner]");
 
     }
 
