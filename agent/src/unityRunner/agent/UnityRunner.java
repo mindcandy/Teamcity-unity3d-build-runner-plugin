@@ -134,8 +134,10 @@ public class UnityRunner {
                 while (iterator.hasNext()) {
                     String line = iterator.nextLine();
 
-                    // log the message
-                    logMessage(line);
+                    if (line.length() > 0) {
+                        // log the message
+                        logMessage(line);
+                    }
                 }
             } finally {
                 iterator.close();
