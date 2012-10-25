@@ -127,7 +127,7 @@ public class UnityRunner {
     private void catLogFile() {
         logMessage("[Catting log file]");
         if ( configuration.ignoreErrorsBefore ) {
-            logMessage("[Ignoring Errors before text "+configuration.ignoreErrorsBeforeText+"]");
+            logMessage("[Ignoring lines before text "+configuration.ignoreErrorsBeforeText+"]");
         }
 
         File file = new File(configuration.getInterestedLogPath());
@@ -135,19 +135,27 @@ public class UnityRunner {
         // for each line
         try {
             LineIterator iterator = FileUtils.lineIterator(file);
+            List<String> ignoredLines = new ArrayList<String>();
+            boolean stillIgnoringLines = configuration.ignoreErrorsBefore;
             try {
-                boolean ignoringLines = configuration.ignoreErrorsBefore;
                 while (iterator.hasNext()) {
                     String line = iterator.nextLine();
-                    if (ignoringLines && line.contentEquals(configuration.ignoreErrorsBeforeText)){
+                    if (stillIgnoringLines && line.contentEquals(configuration.ignoreErrorsBeforeText)){
                         logMessage("[Not ignoring Lines anymore, FOUND TEXT]");
-                        ignoringLines = false;
+                        stillIgnoringLines = false;
                     }
 
                     if (line.length() > 0) {
-                        // log the message
-                        logMessage((ignoringLines ? "--IGNORED-- ":line));
+                        if ( stillIgnoringLines ) {
+                            ignoredLines.add(line);
+                        } else {
+                            // log the message
+                            logMessage(line);
+                        }
                     }
+                }
+                if (stillIgnoringLines) {
+                    logMessages(ignoredLines);
                 }
             } finally {
                 iterator.close();
@@ -158,6 +166,12 @@ public class UnityRunner {
         }
 
 
+    }
+
+    private void logMessages(List<String> lines) {
+        for (String line : lines){
+            logMessage(line);
+        }
     }
 
     /**
