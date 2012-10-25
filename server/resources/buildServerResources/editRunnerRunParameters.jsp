@@ -135,3 +135,33 @@
         </span>
     </td>
 </tr>
+
+<tr>
+    <th>
+        <label for="argument.error_ignore">Enable Old Error Ignore: </label>
+    </th>
+    <td>
+        <c:set var='onclick'>
+          if (this.checked) {
+          BS.Util.show('argument.error_ignore_text.container');
+          $('argument.error_ignore_text').focus();
+          } else {
+          BS.Util.hide('argument.error_ignore_text.container');
+          }
+          BS.VisibilityHandlers.updateVisibility('mainContent');
+        </c:set>
+        <props:checkboxProperty name="argument.error_ignore" onclick="${onclick}"/>
+        <span class="error" id="error_argument.error_ignore"></span>
+
+        <div id="argument.error_ignore_text.container" style="${propertiesBean.properties['argument.error_ignore'] ? '' : 'display:none;'}"
+            <label for="argument.error_ignore_text">Text: </label>
+            <props:textProperty name="argument.error_ignore_text" style="width:32em;"/>
+            <span class="error" id="error_argument.error_ignore_text"></span>
+        </div>
+
+        <span class="smallNote">
+             Ignores old errors output by Unity before new files are read.<br/>
+             Identifies when old errors are over by looking for a text that needs to be configured.
+        </span>
+    </td>
+</tr>

@@ -125,18 +125,28 @@ public class UnityRunner {
      * cat the log file instead of tailing it
      */
     private void catLogFile() {
+        logMessage("[Catting log file]");
+        if ( configuration.ignoreErrorsBefore ) {
+            logMessage("[Ignoring Errors before text "+configuration.ignoreErrorsBeforeText+"]");
+        }
+
         File file = new File(configuration.getInterestedLogPath());
 
         // for each line
         try {
             LineIterator iterator = FileUtils.lineIterator(file);
             try {
+                boolean ignoringLines = configuration.ignoreErrorsBefore;
                 while (iterator.hasNext()) {
                     String line = iterator.nextLine();
+                    if (ignoringLines && line.contentEquals(configuration.ignoreErrorsBeforeText)){
+                        logMessage("[Not ignoring Lines anymore, FOUND TEXT]");
+                        ignoringLines = false;
+                    }
 
                     if (line.length() > 0) {
                         // log the message
-                        logMessage(line);
+                        logMessage((ignoringLines ? "--IGNORED-- ":line));
                     }
                 }
             } finally {
