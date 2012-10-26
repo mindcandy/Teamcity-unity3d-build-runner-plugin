@@ -55,3 +55,11 @@
 <div class="parameter">
   Clean Output After: <strong><props:displayValue name="argument.clean_output_after" /></strong>
 </div>
+
+<div class="parameter">
+  <c:choose>
+    <c:when test="${propertiesBean.properties['argument.log_ignore']}">
+      Ignore Errors Before: <strong><props:displayValue name="argument.log_ignore_text" /></strong>
+    </c:when>
+  </c:choose>
+</div>

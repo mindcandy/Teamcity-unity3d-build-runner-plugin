@@ -53,6 +53,14 @@ public class UnityRunnerRunType extends RunType {
             sb.append(executeMethod);
         }
 
+        String logIgnore = parameters.get(PluginConstants.PROPERTY_LOG_IGNORE);
+        if (logIgnore != null && "true".equals(logIgnore)) {
+            String ignoreLogText = parameters.get(PluginConstants.PROPERTY_LOG_IGNORE_TEXT);
+            sb.append(" \n");
+            sb.append("Ignore Log Before: ");
+            sb.append(ignoreLogText);
+        }
+
         return sb.toString();
     }
 
@@ -111,6 +119,7 @@ public class UnityRunnerRunType extends RunType {
         defaults.put(PluginConstants.PROPERTY_BATCH_MODE, "true");
         defaults.put(PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE, "true");
         defaults.put(PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER, "true");
+        defaults.put(PluginConstants.PROPERTY_LOG_IGNORE, "false");
 
         return defaults;
     }
