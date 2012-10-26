@@ -22,8 +22,8 @@ public interface PluginConstants {
     final String PROPERTY_CLEAR_OUTPUT_BEFORE = "argument.clear_output_before";
     final String PROPERTY_CLEAN_OUTPUT_AFTER = "argument.clean_output_after";
 
-    final String PROPERTY_ERROR_IGNORE = "argument.error_ignore";
-    final String PROPERTY_ERROR_IGNORE_TEXT = "argument.error_ignore_text";
+    final String PROPERTY_LOG_IGNORE = "argument.log_ignore";
+    final String PROPERTY_LOG_IGNORE_TEXT = "argument.log_ignore_text";
 
     final List<String> PROPERTY_BUILD_TARGETS = Arrays.asList("buildWindowsPlayer", "buildOSXPlayer!", "buildWebPlayer");
 

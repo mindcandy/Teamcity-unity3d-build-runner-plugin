@@ -58,8 +58,8 @@
 
 <div class="parameter">
   <c:choose>
-    <c:when test="${propertiesBean.properties['argument.error_ignore']}">
-      Ignore Errors Before: <strong><props:displayValue name="argument.error_ignore_text" /></strong>
+    <c:when test="${propertiesBean.properties['argument.log_ignore']}">
+      Ignore Errors Before: <strong><props:displayValue name="argument.log_ignore_text" /></strong>
     </c:when>
   </c:choose>
 </div>

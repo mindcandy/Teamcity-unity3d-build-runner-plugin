@@ -36,8 +36,8 @@ public class UnityRunnerConfiguration {
     final Platform platform;
     final java.io.File cleanedLogPath;
 
-    final boolean ignoreErrorsBefore;
-    final String ignoreErrorsBeforeText;
+    final boolean ignoreLogBefore;
+    final String ignoreLogBeforeText;
 
     final static String windowsUnityPath = "C:\\Program Files (x86)\\Unity\\Editor\\unity.exe";
     final static String macUnityPath = "/Applications/Unity/Unity.app/Contents/MacOS/Unity";
@@ -73,8 +73,8 @@ public class UnityRunnerConfiguration {
                 String.format("cleaned-%d.log", agentRunningBuild.getBuildId()) );
         useCleanedLog = true;
 
-        ignoreErrorsBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_ERROR_IGNORE);
-        ignoreErrorsBeforeText = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_ERROR_IGNORE_TEXT);
+        ignoreLogBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_LOG_IGNORE);
+        ignoreLogBeforeText = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_LOG_IGNORE_TEXT);
 
     }
 
