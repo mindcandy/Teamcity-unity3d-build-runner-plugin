@@ -58,6 +58,19 @@
     </td>
 </tr>
 
+<tr>
+    <th>
+        <label for="argument.line_list_path">Line List path: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.line_list_path" style="width:32em;"/>
+        <span class="error" id="error_argument.line_list_path"></span>
+        <span class="smallNote">
+             Open the Error / Warning list file at the following path
+        </span>
+    </td>
+</tr>
+
 <props:selectSectionProperty name="argument.build_player" title="Build player:">
     <props:selectSectionPropertyContent value="" caption="<Don't build player>"/>
     <props:selectSectionPropertyContent value="buildWindowsPlayer" caption="Windows Player"/>
@@ -109,6 +122,18 @@
     </td>
 </tr>
 
+<tr>
+    <th>
+        <label for="argument.warnings_as_errors">Warnings As Errors: </label>
+    </th>
+    <td>
+         <props:checkboxProperty name="argument.warnings_as_errors"/>
+         <span class="error" id="error_argument.warnings_as_errors"></span>
+         <span class="smallNote">
+            Should the build will report warnings as errors.
+         </span>
+    </td>
+</tr>
 
 <tr>
     <th>

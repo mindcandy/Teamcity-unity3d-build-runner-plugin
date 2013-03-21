@@ -40,6 +40,9 @@ public class UnityRunnerRunType extends RunType {
         sb.append("Project: ");
         sb.append(parameters.get(PluginConstants.PROPERTY_PROJECT_PATH));
         sb.append(" \n");
+        sb.append("Error / Warning Line List: ");
+        sb.append(parameters.get(PluginConstants.PROPERTY_LINELIST_PATH));
+        sb.append(" \n");
         sb.append("Build Player: ");
         sb.append(parameters.get(PluginConstants.PROPERTY_BUILD_PLAYER));
         sb.append(" \n");
@@ -119,6 +122,7 @@ public class UnityRunnerRunType extends RunType {
         defaults.put(PluginConstants.PROPERTY_BATCH_MODE, "true");
         defaults.put(PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE, "true");
         defaults.put(PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER, "true");
+        defaults.put(PluginConstants.PROPERTY_WARNINGS_AS_ERRORS, "true");
         defaults.put(PluginConstants.PROPERTY_LOG_IGNORE, "false");
 
         return defaults;

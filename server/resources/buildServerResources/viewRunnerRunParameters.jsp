@@ -24,9 +24,16 @@
 </div>
 
 <div class="parameter">
+  Line List Path: <strong><props:displayValue name="argument.line_list_path" /></strong>
+</div>
+
+<div class="parameter">
   Build player: <strong><props:displayValue name="argument.build_player" /></strong>
 </div>
 
+<div class="parameter">
+  Warnings As Errors: <strong><props:displayValue name="argument.warnings_as_errors" /></strong>
+</div>
 
 <div class="parameter">
   Build Path: <strong><props:displayValue name="argument.build_path" /></strong>
