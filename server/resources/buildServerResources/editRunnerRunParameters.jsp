@@ -58,6 +58,19 @@
     </td>
 </tr>
 
+<tr>
+    <th>
+        <label for="argument.line_list_path">Line List path: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.line_list_path" style="width:32em;"/>
+        <span class="error" id="error_argument.line_list_path"></span>
+        <span class="smallNote">
+             Open the Error / Warning list file at the following path
+        </span>
+    </td>
+</tr>
+
 <props:selectSectionProperty name="argument.build_player" title="Build player:">
     <props:selectSectionPropertyContent value="" caption="<Don't build player>"/>
     <props:selectSectionPropertyContent value="buildWindowsPlayer" caption="Windows Player"/>
@@ -109,6 +122,18 @@
     </td>
 </tr>
 
+<tr>
+    <th>
+        <label for="argument.warnings_as_errors">Warnings As Errors: </label>
+    </th>
+    <td>
+         <props:checkboxProperty name="argument.warnings_as_errors"/>
+         <span class="error" id="error_argument.warnings_as_errors"></span>
+         <span class="smallNote">
+            Should the build will report warnings as errors.
+         </span>
+    </td>
+</tr>
 
 <tr>
     <th>
@@ -132,6 +157,36 @@
         <span class="error" id="error_argument.quit"></span>
         <span class="smallNote">
              Quit Unity cleanly upon finishing execution of other command line arguments.
+        </span>
+    </td>
+</tr>
+
+<tr>
+    <th>
+        <label for="argument.log_ignore">Enable Log Ignore: </label>
+    </th>
+    <td>
+        <c:set var='onclick'>
+          if (this.checked) {
+          BS.Util.show('argument.log_ignore_text.container');
+          $('argument.log_ignore_text').focus();
+          } else {
+          BS.Util.hide('argument.log_ignore_text.container');
+          }
+          BS.VisibilityHandlers.updateVisibility('mainContent');
+        </c:set>
+        <props:checkboxProperty name="argument.log_ignore" onclick="${onclick}"/>
+        <span class="error" id="error_argument.log_ignore"></span>
+
+        <div id="argument.log_ignore_text.container" style="${propertiesBean.properties['argument.log_ignore'] ? '' : 'display:none;'}"
+            <label for="argument.log_ignore_text">Ignore any log line before: </label>
+            <props:textProperty name="argument.log_ignore_text" style="width:32em;"/>
+            <span class="error" id="error_argument.log_ignore_text"></span>
+        </div>
+
+        <span class="smallNote">
+             Will ignore all log lines output before the specified text is found. Will output all ignored lines if the text is never found.<br/>
+             This prevents errors shown in TeamCity logs before Unity has refreshed and found new files.<br/>
         </span>
     </td>
 </tr>

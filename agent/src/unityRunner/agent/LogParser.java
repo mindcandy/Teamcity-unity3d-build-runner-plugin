@@ -6,7 +6,7 @@ import unityRunner.agent.block.Block;
 import unityRunner.agent.block.MatchedBlock;
 import unityRunner.agent.block.UnityBlockList;
 import unityRunner.agent.line.Line;
-import unityRunner.agent.line.UnityLineList;
+import unityRunner.agent.line.UnityLineListParser;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -25,10 +25,14 @@ import java.util.Stack;
 public class LogParser {
     private final Stack<MatchedBlock> blockStack = new Stack<MatchedBlock>();
     private final jetbrains.buildServer.agent.BuildProgressLogger logger;
+    private final boolean warningsAsErrors;
 
-    LogParser(jetbrains.buildServer.agent.BuildProgressLogger logger) {
+    LogParser(jetbrains.buildServer.agent.BuildProgressLogger logger, boolean warningsAsErrors, java.io.File lineListDefinition) {
         this.logger = logger;
-        
+        this.warningsAsErrors = warningsAsErrors;
+
+        UnityLineListParser.ParseLines(lineListDefinition);
+
         for (Block block : UnityBlockList.blocks)
             block.init();
     }
@@ -100,7 +104,7 @@ public class LogParser {
 
     private void logLine(String message) {
         // Now check message
-        for (Line line : UnityLineList.lines) {
+        for (Line line : UnityLineListParser.lines) {
             if (line.matches(message)) {
                 log(message, line.getType());
                 return;
@@ -117,6 +121,12 @@ public class LogParser {
         switch (type) {
             case Warning:
                 status = Status.WARNING;
+                if(warningsAsErrors) {
+                    status = Status.ERROR;
+                }
+                else {
+                    status = Status.WARNING;
+                }
                 break;
             case Error:
                 status = Status.ERROR;
