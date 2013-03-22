@@ -24,9 +24,16 @@
 </div>
 
 <div class="parameter">
+  Line List Path: <strong><props:displayValue name="argument.line_list_path" /></strong>
+</div>
+
+<div class="parameter">
   Build player: <strong><props:displayValue name="argument.build_player" /></strong>
 </div>
 
+<div class="parameter">
+  Warnings As Errors: <strong><props:displayValue name="argument.warnings_as_errors" /></strong>
+</div>
 
 <div class="parameter">
   Build Path: <strong><props:displayValue name="argument.build_path" /></strong>
@@ -54,4 +61,12 @@
 
 <div class="parameter">
   Clean Output After: <strong><props:displayValue name="argument.clean_output_after" /></strong>
+</div>
+
+<div class="parameter">
+  <c:choose>
+    <c:when test="${propertiesBean.properties['argument.log_ignore']}">
+      Ignore Errors Before: <strong><props:displayValue name="argument.log_ignore_text" /></strong>
+    </c:when>
+  </c:choose>
 </div>

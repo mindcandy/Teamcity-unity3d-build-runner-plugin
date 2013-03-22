@@ -28,6 +28,8 @@ public class UnityRunnerConfiguration {
     final boolean clearBefore;
     final boolean cleanAfter;
     final boolean useCleanedLog;
+    final boolean warningsAsErrors;
+    final String lineListPath;
     final String projectPath;
     final String executeMethod;
     final String buildPlayer;
@@ -35,6 +37,9 @@ public class UnityRunnerConfiguration {
 
     final Platform platform;
     final java.io.File cleanedLogPath;
+
+    final boolean ignoreLogBefore;
+    final String ignoreLogBeforeText;
 
     final static String windowsUnityPath = "C:\\Program Files (x86)\\Unity\\Editor\\unity.exe";
     final static String macUnityPath = "/Applications/Unity/Unity.app/Contents/MacOS/Unity";
@@ -56,6 +61,7 @@ public class UnityRunnerConfiguration {
         noGraphics = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_NO_GRAPHICS);
         projectPath = FilenameUtils.separatorsToSystem(
                 Parameters.getString(runnerParameters, PluginConstants.PROPERTY_PROJECT_PATH));
+        lineListPath = FilenameUtils.separatorsToSystem(Parameters.getString(runnerParameters, PluginConstants.PROPERTY_LINELIST_PATH));
         executeMethod = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_EXECUTE_METHOD);
         buildPlayer = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PLAYER);
         buildPath = FilenameUtils.separatorsToSystem(
@@ -63,12 +69,17 @@ public class UnityRunnerConfiguration {
 
         clearBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE);
         cleanAfter = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER);
+        warningsAsErrors = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_WARNINGS_AS_ERRORS);
 
         // set cleaned log path to %temp%/cleaned-%teamcity.build.id%.log
         cleanedLogPath = new java.io.File(
                 agentRunningBuild.getBuildTempDirectory(),
                 String.format("cleaned-%d.log", agentRunningBuild.getBuildId()) );
         useCleanedLog = true;
+
+        ignoreLogBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_LOG_IGNORE);
+        ignoreLogBeforeText = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_LOG_IGNORE_TEXT);
+
     }
 
     String getUnityPath() {
