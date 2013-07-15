@@ -29,6 +29,8 @@ Open up the unity_runner.ipr file, then open the Ant Build window and add build.
 
 Double click on 'dist' target to do a full build, which should produce dist/unityRunner.zip
 
+Alternatively, just run ant from this folder. 
+
 ### Installing in Teamcity
 
 Copy the unityRunner.zip file to the .BuildServer/plugins/ folder in your Teamcity installation, then restart Teamcity.
