@@ -48,7 +48,10 @@ public class UnityRunnerRunType extends RunType {
         sb.append(" \n");
         sb.append("Output directory: ");
         sb.append(parameters.get(PluginConstants.PROPERTY_BUILD_PATH));
-        
+        sb.append(" \n");
+        sb.append("Extra options: ");
+        sb.append(parameters.get(PluginConstants.PROPERTY_BUILD_EXTRA));
+
         String executeMethod = parameters.get(PluginConstants.PROPERTY_EXECUTE_METHOD);
         if (executeMethod != null && !executeMethod.isEmpty()) {
             sb.append(" \n");

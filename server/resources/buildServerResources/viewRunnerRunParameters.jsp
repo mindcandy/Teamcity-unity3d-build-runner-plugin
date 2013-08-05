@@ -39,6 +39,9 @@
   Build Path: <strong><props:displayValue name="argument.build_path" /></strong>
 </div>
 
+<div class="parameter">
+  Build Extra: <strong><props:displayValue name="argument.build_extra" /></strong>
+</div>
 
 <div class="parameter">
   <c:choose>
