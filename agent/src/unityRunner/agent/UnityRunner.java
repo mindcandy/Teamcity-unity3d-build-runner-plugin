@@ -71,6 +71,8 @@ public class UnityRunner {
             args.add(configuration.getCleanedLogPath());
         }
 
+        args.add(configuration.extraOpts);
+
         return args;
     }
 

@@ -80,6 +80,18 @@
 
 <tr>
     <th>
+        <label for="argument.build_extra">Build extra: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.build_extra" style="width:32em;"/>
+        <span class="smallNote">
+             Add extra command line options.
+        </span>
+    </td>
+<tr>
+
+<tr>
+    <th>
         <label for="argument.build_path">Build path: </label>
     </th>
     <td>
