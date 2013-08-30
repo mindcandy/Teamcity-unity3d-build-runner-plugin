@@ -34,6 +34,7 @@ public class UnityRunnerConfiguration {
     final String executeMethod;
     final String buildPlayer;
     final String buildPath;
+    final String extraOpts;
 
     final Platform platform;
     final java.io.File cleanedLogPath;
@@ -66,6 +67,7 @@ public class UnityRunnerConfiguration {
         buildPlayer = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PLAYER);
         buildPath = FilenameUtils.separatorsToSystem(
                 Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PATH));
+        extraOpts = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_EXTRA);
 
         clearBefore = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAR_OUTPUT_BEFORE);
         cleanAfter = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_CLEAN_OUTPUT_AFTER);
