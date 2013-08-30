@@ -19,7 +19,10 @@ Using
 Installation
 ------------
 
-(todo: provide a prebuilt version)
+### Prebuilt version
+
+You can download a prebuilt version against Teamcity 8.0.3 here: [prebuilt unity runner.zip, 1.5MB](http://tech.mindcandy.com/wp-content/uploads/2013/08/unityRunner.zip)
+It _may_ work with other versions of Teamcity (unless there are breaking API changes).
 
 ### Compilation
 
