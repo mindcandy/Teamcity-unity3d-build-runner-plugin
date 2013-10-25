@@ -20,8 +20,11 @@ import jetbrains.buildServer.agent.AgentBuildRunnerInfo;
 import jetbrains.buildServer.agent.BuildAgentConfiguration;
 import jetbrains.buildServer.agent.runner.CommandLineBuildService;
 import jetbrains.buildServer.agent.runner.CommandLineBuildServiceFactory;
+import jetbrains.buildServer.log.Loggers;
 import org.jetbrains.annotations.NotNull;
 import unityRunner.common.PluginConstants;
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.plist.XMLPropertyListConfiguration;
 
 import java.io.File;
 
@@ -71,10 +74,44 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
                     if (file.exists()) {
                         agentConfiguration.addConfigurationParameter("unity.exe", unityPath);
-                        // We need to find a way to automatically get Unity version number.c
-                        agentConfiguration.addConfigurationParameter("unity.version", "3.4.2");
                         agentConfiguration.addConfigurationParameter("unity.log", unityLog);
+
+                        // don't hard-code the unity version
+                        if (agentConfiguration.getSystemInfo().isMac()) {
+                            readMacUnityVersion(agentConfiguration);
+                        } else {
+                            // find on windows - registry key?
+                        }
                     }
+                }
+            }
+
+            private void readMacUnityVersion(@NotNull BuildAgentConfiguration agentConfiguration) {
+                try {
+                    XMLPropertyListConfiguration config = new XMLPropertyListConfiguration("/Applications/Unity/Unity.app/Contents/Info.plist");
+                    if (config != null) {
+                        String version = config.getString("CFBundleVersion");   
+                        if (version != null) {             
+                            // strip off f-part
+                            int indexOfF = version.indexOf("f");
+                            if (indexOfF > -1) {
+                                version = version.substring(0,indexOfF);
+                            }
+                            Loggers.AGENT.info("Found unity.version= " + version);
+                            agentConfiguration.addConfigurationParameter("unity.version", version);
+                        }
+
+                        String buildNumber = config.getString("UnityBuildNumber");
+                        if (buildNumber != null) {
+                            Loggers.AGENT.info("Found unity.buildNumber= " + buildNumber);
+                            agentConfiguration.addConfigurationParameter("unity.buildNumber", buildNumber);
+                        }
+
+                    }
+
+                } catch (Exception e) {
+                    // had trouble detecting version
+                    Loggers.AGENT.error("Exception getting unity version :" + e.getMessage());
                 }
             }
         };
