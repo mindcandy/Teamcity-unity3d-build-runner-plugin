@@ -28,9 +28,17 @@ It _may_ work with other versions of Teamcity (unless there are breaking API cha
 
 When building the plugin, you need to have downloaded the Teamcity distribution you want to build against, so that the compilation process can grab the necessary libs. It's also useful so that you can test that it will load the plugin correctly.
 
-When running Teamcity locally, any plugins need to be installed by putting them in the .BuildServer folder. On Nix and OSX this defaults to */home/<user>/.BuildServer*.
+When running Teamcity locally, any plugins need to be installed by putting them in the TEAMCITY_DATA_PATH/plugins  folder.
 
-Before compiling, it's important to update the build.properties file with the paths the Teamcity distribution and to the .BuildServer folder. When the process is complete, ant should automatically copy the unityRunner.zip file to the .BuildServer folder.
+You can find the  TEAMCITY_DATA_PATH is set under  Administration > Server Configuration > GlobalSetting ( according to this documentation: http://confluence.jetbrains.com/display/TCD4/TeamCity+Data+Directory )
+
+On Nix and OSX this defaults to */home/<user>/.BuildServer*.
+
+On Windows is by default:%PROGRAMDATA%\JetBrains\TeamCity ( Windows 8, Teamcity Version 8.0.4 )
+
+
+
+Before compiling, it's important to update the build.properties file with the paths the Teamcity distribution and to the TEAMCITY_DATA_PATH folder. When the process is complete, ant should automatically copy the unityRunner.zip file to the Datapath folder.
 
 #### Ant CLI
 
@@ -46,7 +54,7 @@ Double click on 'dist' target to do a full build, which should produce dist/unit
 
 ### Installing in Teamcity
 
-Copy the unityRunner.zip file to the .BuildServer/plugins/ folder in your Teamcity installation, then restart Teamcity.
+Copy the unityRunner.zip file to the TEAMCITY_DATA_PATH/plugins/ folder in your Teamcity installation, then restart Teamcity.
 
 
 Usage
