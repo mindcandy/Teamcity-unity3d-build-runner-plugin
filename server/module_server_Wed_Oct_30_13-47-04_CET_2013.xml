@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_server" default="compile.module.server">
+  <dirname property="module.server.basedir" file="${ant.file.module_server}"/>
+  
+  <property name="module.jdk.home.server" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.server" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.server" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.server" value="${compiler.args}"/>
+  
+  <property name="server.output.dir" value="${module.server.basedir}/../out/production/Server"/>
+  <property name="server.testoutput.dir" value="${module.server.basedir}/../out/test/Server"/>
+  
+  <path id="server.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="server.module.production.classpath">
+    <path refid="${module.jdk.classpath.server}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-lang3-3.1.jar"/>
+  </path>
+  
+  <path id="server.runtime.production.module.classpath">
+    <pathelement location="${server.output.dir}"/>
+    <path refid="common.runtime.production.module.classpath"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-lang3-3.1.jar"/>
+  </path>
+  
+  <path id="server.module.classpath">
+    <path refid="${module.jdk.classpath.server}"/>
+    <pathelement location="${server.output.dir}"/>
+    <pathelement location="${common.testoutput.dir}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-lang3-3.1.jar"/>
+  </path>
+  
+  <path id="server.runtime.module.classpath">
+    <pathelement location="${server.testoutput.dir}"/>
+    <pathelement location="${server.output.dir}"/>
+    <path refid="common.runtime.module.classpath"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-lang3-3.1.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.server">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.server">
+    <patternset refid="excluded.from.module.server"/>
+  </patternset>
+  
+  <path id="server.module.sourcepath">
+    <dirset dir="${module.server.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.server" depends="compile.module.server.production,compile.module.server.tests" description="Compile module Server"/>
+  
+  <target name="compile.module.server.production" depends="register.custom.compilers,compile.module.common" description="Compile module Server; production classes">
+    <mkdir dir="${server.output.dir}"/>
+    <javac2 destdir="${server.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.server}/javac">
+      <compilerarg line="${compiler.args.server}"/>
+      <bootclasspath refid="server.module.bootclasspath"/>
+      <classpath refid="server.module.production.classpath"/>
+      <src refid="server.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.server"/>
+    </javac2>
+    
+    <copy todir="${server.output.dir}">
+      <fileset dir="${module.server.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.server.tests" depends="register.custom.compilers,compile.module.server.production" description="compile module Server; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.server" description="cleanup module">
+    <delete dir="${server.output.dir}"/>
+    <delete dir="${server.testoutput.dir}"/>
+  </target>
+</project>
