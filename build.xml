@@ -54,7 +54,8 @@
     </target>
 
     <artifact:dependencies filesetId="dependency.fileset">
-        <dependency groupId="commons-io" artifactId="commons-io" version="2.1"/>
+        <dependency groupId="commons-io" artifactId="commons-io" version="2.4"/>
+        <dependency groupId="commons-configuration" artifactId="commons-configuration" version="1.9"/>
     </artifact:dependencies>
 
     <copy todir="${basedir}/lib">
