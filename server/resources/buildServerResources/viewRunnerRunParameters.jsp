@@ -10,13 +10,6 @@
   </c:choose>
 </div>
 
-<div class="parameter">
-  <c:choose>
-    <c:when test="${not empty propertiesBean.properties['argument.unity_executable']}">
-      Unity Executable: <strong><props:displayValue name="argument.unity_executable" /></strong>
-    </c:when>
-  </c:choose>
-</div>
 
 <div class="parameter">
   Batch Mode: <strong><props:displayValue name="argument.batch_mode" /></strong>

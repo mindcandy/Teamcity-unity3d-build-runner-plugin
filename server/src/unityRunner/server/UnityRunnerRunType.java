@@ -37,9 +37,6 @@ public class UnityRunnerRunType extends RunType {
     public String describeParameters(@NotNull final Map<String, String> parameters)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("Unity Executable: ");
-        sb.append(parameters.get(PluginConstants.PROPERTY_UNITY_EXECUTABLE));
-        sb.append(" \n");
         sb.append("Project: ");
         sb.append(parameters.get(PluginConstants.PROPERTY_PROJECT_PATH));
         sb.append(" \n");
