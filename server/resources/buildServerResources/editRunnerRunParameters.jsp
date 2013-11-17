@@ -20,6 +20,19 @@
 
 <tr>
     <th>
+        <label for="argument.unity_executable"> Unity Executable: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.unity_executable" style="width:32em;"/>
+        <span class="error" id="error_argument.unity_executable"></span>
+        <span class="smallNote">
+             Optional, Specifiy if you need another Unity version, or have a non default install path.
+        </span>
+    </td>
+</tr>
+
+<tr>
+    <th>
         <label for="argument.batch_mode">Batch mode: </label>
     </th>
     <td>

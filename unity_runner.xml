@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="unity_runner" default="all">
+  
+  
+  <property file="unity_runner.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
+  <path id="jdk.classpath.1.7">
+    <fileset dir="${jdk.home.1.7}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxrt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.7}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.open-api.classpath">
+    <fileset dir="${idea.home}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="library.teamcitylibs.classpath">
+    <fileset dir="${path.variable.teamcitydistribution}/launcher/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${path.variable.teamcitydistribution}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="C:/Program Files/TeamCity/devPackage">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="C:/Program Files/TeamCity/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.intellij_idea_community_edition_12.1.classpath"/>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module Common -->
+  
+  <dirname property="module.common.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.common" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.common" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.common" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.common" value="${compiler.args}"/>
+  
+  <property name="common.output.dir" value="${module.common.basedir}/out/production/Common"/>
+  <property name="common.testoutput.dir" value="${module.common.basedir}/out/test/Common"/>
+  
+  <path id="common.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="common.module.production.classpath">
+    <path refid="${module.jdk.classpath.common}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  <path id="common.runtime.production.module.classpath">
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  <path id="common.module.classpath">
+    <path refid="${module.jdk.classpath.common}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  <path id="common.runtime.module.classpath">
+    <pathelement location="${common.testoutput.dir}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.common">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.common">
+    <patternset refid="excluded.from.module.common"/>
+  </patternset>
+  
+  <path id="common.module.sourcepath">
+    <dirset dir="${module.common.basedir}/common">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.common" depends="compile.module.common.production,compile.module.common.tests" description="Compile module Common"/>
+  
+  <target name="compile.module.common.production" depends="register.custom.compilers" description="Compile module Common; production classes">
+    <mkdir dir="${common.output.dir}"/>
+    <javac2 destdir="${common.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.common}/javac">
+      <compilerarg line="${compiler.args.common}"/>
+      <bootclasspath refid="common.module.bootclasspath"/>
+      <classpath refid="common.module.production.classpath"/>
+      <src refid="common.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.common"/>
+    </javac2>
+    
+    <copy todir="${common.output.dir}">
+      <fileset dir="${module.common.basedir}/common/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.common.tests" depends="register.custom.compilers,compile.module.common.production" description="compile module Common; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.common" description="cleanup module">
+    <delete dir="${common.output.dir}"/>
+    <delete dir="${common.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module Agent -->
+  
+  <dirname property="module.agent.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.agent" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.agent" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.agent" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.agent" value="${compiler.args}"/>
+  
+  <property name="agent.output.dir" value="${module.agent.basedir}/out/production/Agent"/>
+  <property name="agent.testoutput.dir" value="${module.agent.basedir}/out/test/Agent"/>
+  
+  <path id="agent.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="agent.module.production.classpath">
+    <path refid="${module.jdk.classpath.agent}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-io-2.1.jar"/>
+    <path refid="library.intellij_idea_community_edition_12.1.classpath"/>
+  </path>
+  
+  <path id="agent.runtime.production.module.classpath">
+    <pathelement location="${agent.output.dir}"/>
+    <path refid="common.runtime.production.module.classpath"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-io-2.1.jar"/>
+    <path refid="library.intellij_idea_community_edition_12.1.classpath"/>
+  </path>
+  
+  <path id="agent.module.classpath">
+    <path refid="${module.jdk.classpath.agent}"/>
+    <pathelement location="${agent.output.dir}"/>
+    <pathelement location="${common.testoutput.dir}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-io-2.1.jar"/>
+    <path refid="library.intellij_idea_community_edition_12.1.classpath"/>
+  </path>
+  
+  <path id="agent.runtime.module.classpath">
+    <pathelement location="${agent.testoutput.dir}"/>
+    <pathelement location="${agent.output.dir}"/>
+    <path refid="common.runtime.module.classpath"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+    <pathelement location="${basedir}/lib/commons-io-2.1.jar"/>
+    <path refid="library.intellij_idea_community_edition_12.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.agent">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.agent">
+    <patternset refid="excluded.from.module.agent"/>
+  </patternset>
+  
+  <path id="agent.module.sourcepath">
+    <dirset dir="${module.agent.basedir}/agent">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.agent" depends="compile.module.agent.production,compile.module.agent.tests" description="Compile module Agent"/>
+  
+  <target name="compile.module.agent.production" depends="register.custom.compilers,compile.module.common" description="Compile module Agent; production classes">
+    <mkdir dir="${agent.output.dir}"/>
+    <javac2 destdir="${agent.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.agent}/javac">
+      <compilerarg line="${compiler.args.agent}"/>
+      <bootclasspath refid="agent.module.bootclasspath"/>
+      <classpath refid="agent.module.production.classpath"/>
+      <src refid="agent.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.agent"/>
+    </javac2>
+    
+    <copy todir="${agent.output.dir}">
+      <fileset dir="${module.agent.basedir}/agent/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.agent.tests" depends="register.custom.compilers,compile.module.agent.production" description="compile module Agent; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.agent" description="cleanup module">
+    <delete dir="${agent.output.dir}"/>
+    <delete dir="${agent.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module Server -->
+  
+  <dirname property="module.server.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.server" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.server" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.server" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.server" value="${compiler.args}"/>
+  
+  <property name="server.output.dir" value="${module.server.basedir}/out/production/Server"/>
+  <property name="server.testoutput.dir" value="${module.server.basedir}/out/test/Server"/>
+  
+  <path id="server.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="server.module.production.classpath">
+    <path refid="${module.jdk.classpath.server}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  <path id="server.runtime.production.module.classpath">
+    <pathelement location="${server.output.dir}"/>
+    <path refid="common.runtime.production.module.classpath"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  <path id="server.module.classpath">
+    <path refid="${module.jdk.classpath.server}"/>
+    <pathelement location="${server.output.dir}"/>
+    <pathelement location="${common.testoutput.dir}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  <path id="server.runtime.module.classpath">
+    <pathelement location="${server.testoutput.dir}"/>
+    <pathelement location="${server.output.dir}"/>
+    <path refid="common.runtime.module.classpath"/>
+    <path refid="library.teamcitylibs.classpath"/>
+    <path refid="library.open-api.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.server">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.server">
+    <patternset refid="excluded.from.module.server"/>
+  </patternset>
+  
+  <path id="server.module.sourcepath">
+    <dirset dir="${module.server.basedir}/server">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.server" depends="compile.module.server.production,compile.module.server.tests" description="Compile module Server"/>
+  
+  <target name="compile.module.server.production" depends="register.custom.compilers,compile.module.common" description="Compile module Server; production classes">
+    <mkdir dir="${server.output.dir}"/>
+    <javac2 destdir="${server.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.server}/javac">
+      <compilerarg line="${compiler.args.server}"/>
+      <bootclasspath refid="server.module.bootclasspath"/>
+      <classpath refid="server.module.production.classpath"/>
+      <src refid="server.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.server"/>
+    </javac2>
+    
+    <copy todir="${server.output.dir}">
+      <fileset dir="${module.server.basedir}/server/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.server.tests" depends="register.custom.compilers,compile.module.server.production" description="compile module Server; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.server" description="cleanup module">
+    <delete dir="${server.output.dir}"/>
+    <delete dir="${server.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.common, clean.module.agent, clean.module.server" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.common, compile.module.agent, compile.module.server" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

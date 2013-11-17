@@ -10,15 +10,6 @@
     <orderEntry type="module" module-name="Common" />
     <orderEntry type="library" name="TeamcityLibs" level="project" />
     <orderEntry type="library" name="open-api" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/commons-lang3-3.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
 
