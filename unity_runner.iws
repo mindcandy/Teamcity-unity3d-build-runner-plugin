@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/agent/tests/unityRunner/agent/FileVersionInfoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent/Agent.iml" afterPath="$PROJECT_DIR$/agent/Agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent/src/unityRunner/agent/FileVersionInfo.java" afterPath="$PROJECT_DIR$/agent/src/unityRunner/agent/FileVersionInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java" afterPath="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unity_runner.iws" afterPath="$PROJECT_DIR$/unity_runner.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java" afterPath="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java" />
     </list>
     <ignored path="unity_runner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,7 +16,7 @@
     <file path="/viewRunnerRunParameters.jsp" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1383742708373" ignored="false" />
     <file path="/editRunnerRunParameters.jsp" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1383742141108" ignored="false" />
     <file path="/PluginConstants.java" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1383742785470" ignored="false" />
-    <file path="/UnityRunnerConfiguration.java" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1384681730951" ignored="false" />
+    <file path="/UnityRunnerConfiguration.java" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1384718168756" ignored="false" />
     <file path="/UnityRunnerBuildServiceFactory.java" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1384715745598" ignored="false" />
     <file path="/FileVersionInfo.java" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1384717940662" ignored="false" />
     <file path="/unityrunner.xml" changelist="c83d29d9-24f2-4ba0-8863-ce6e1a531ad9" time="1384693675170" ignored="false" />
@@ -93,10 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnityRunnerConfiguration.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="UnityRunnerConfiguration.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="24" selection-start="1382" selection-end="1382" vertical-scroll-proportion="0.0">
+            <state line="84" column="56" selection-start="3751" selection-end="3752" vertical-scroll-proportion="-0.4">
               <folding />
             </state>
           </provider>
@@ -105,19 +102,19 @@
       <file leaf-file-name="UnityRunnerBuildServiceFactory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="83" selection-start="5840" selection-end="5840" vertical-scroll-proportion="0.0">
+            <state line="70" column="69" selection-start="2647" selection-end="2659" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#0#6329#0" expanded="true" />
+                <element signature="e#0#6268#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileVersionInfo.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FileVersionInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/FileVersionInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="68" selection-start="2125" selection-end="2125" vertical-scroll-proportion="0.13996628">
+            <state line="67" column="14" selection-start="2370" selection-end="2370" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -171,14 +168,14 @@
         <option value="$PROJECT_DIR$/server/resources/buildServerResources/editRunnerRunParameters.jsp" />
         <option value="$PROJECT_DIR$/common/src/unityRunner/common/PluginConstants.java" />
         <option value="$PROJECT_DIR$/server/src/unityRunner/server/UnityRunnerRunType.java" />
-        <option value="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java" />
         <option value="$PROJECT_DIR$/agent/src/unityRunner/agent/VS_FIXEDFILEINFO.java" />
         <option value="$PROJECT_DIR$/agent/src/FileVersionInfo.java" />
         <option value="$PROJECT_DIR$/unityrunner.xml" />
         <option value="$PROJECT_DIR$/agent/tests/unityRunner/agent/FileVersionInfoTest.groovy" />
-        <option value="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java" />
         <option value="$PROJECT_DIR$/agent/tests/unityRunner/agent/FileVersionInfoTest.java" />
         <option value="$PROJECT_DIR$/agent/src/unityRunner/agent/FileVersionInfo.java" />
+        <option value="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java" />
+        <option value="$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java" />
       </list>
     </option>
   </component>
@@ -502,13 +499,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936078" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32936078" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21979167" sideWeight="0.6706392" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -654,13 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="24" selection-start="1382" selection-end="1382" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$TeamCityDistribution$/lib/agent-openapi.jar!/jetbrains/buildServer/agent/BuildAgentConfiguration.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="17" selection-start="174" selection-end="174" vertical-scroll-proportion="-0.21441442">
@@ -696,16 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="83" selection-start="5840" selection-end="5840" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#6329#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/agent/tests/unityRunner/agent/FileVersionInfoTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="34" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0">
@@ -717,10 +697,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/FileVersionInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="68" selection-start="2125" selection-end="2125" vertical-scroll-proportion="0.13996628">
+        <state line="67" column="14" selection-start="2370" selection-end="2370" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerBuildServiceFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="69" selection-start="2647" selection-end="2659" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#6268#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agent/src/unityRunner/agent/UnityRunnerConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="56" selection-start="3751" selection-end="3752" vertical-scroll-proportion="-0.4">
+          <folding />
         </state>
       </provider>
     </entry>

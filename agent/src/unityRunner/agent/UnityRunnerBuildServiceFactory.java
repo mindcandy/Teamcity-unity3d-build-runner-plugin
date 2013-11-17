@@ -17,7 +17,6 @@
 package unityRunner.agent;
 
 
-
 import jetbrains.buildServer.agent.AgentBuildRunnerInfo;
 import jetbrains.buildServer.agent.BuildAgentConfiguration;
 import jetbrains.buildServer.agent.runner.CommandLineBuildService;
@@ -26,16 +25,8 @@ import jetbrains.buildServer.log.Loggers;
 import org.jetbrains.annotations.NotNull;
 import unityRunner.common.PluginConstants;
 
-
 //used for reading plist on mac
 import org.apache.commons.configuration.plist.XMLPropertyListConfiguration;
-
-// used for windows meta data
-import java.nio.file.*;
-
-
-
-
 import java.io.File;
 
 public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFactory {
