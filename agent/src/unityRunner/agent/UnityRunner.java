@@ -62,7 +62,7 @@ public class UnityRunner {
         }
 
         if (!configuration.executeMethod.equals("")) {
-                args.add("-executeMethod");
+            args.add("-executeMethod");
             args.add(configuration.executeMethod);
         }
 

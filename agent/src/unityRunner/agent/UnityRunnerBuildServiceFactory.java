@@ -24,16 +24,10 @@ import jetbrains.buildServer.agent.runner.CommandLineBuildServiceFactory;
 import jetbrains.buildServer.log.Loggers;
 import org.jetbrains.annotations.NotNull;
 import unityRunner.common.PluginConstants;
-
-//used for reading plist on mac
 import org.apache.commons.configuration.plist.XMLPropertyListConfiguration;
 import java.io.File;
 
 public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFactory {
-
-    /*interface Version extends Library {
-        Version INSTANCE = (Version) Native.loadLibrary("Version", Version.class, W32APIOptions.UNICODE_OPTIONS);
-    } */
 
     public UnityRunnerBuildServiceFactory() {
     }
@@ -45,7 +39,6 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
     @NotNull
     public AgentBuildRunnerInfo getBuildRunnerInfo() {
-
         return new AgentBuildRunnerInfo() {
 
             @NotNull
@@ -86,7 +79,7 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
                         if (agentConfiguration.getSystemInfo().isMac()) {
                             readMacUnityVersion(agentConfiguration);
                         } else {
-                            // find on windows - reading metadata from the exe
+                            // find on windows - reading versionNumber from the exe ( Windows PE specification)
                             readWindowsUnityVersion(agentConfiguration);
                         }
                     }
@@ -135,8 +128,6 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
             }
         };
-
-
     }
 }
 
