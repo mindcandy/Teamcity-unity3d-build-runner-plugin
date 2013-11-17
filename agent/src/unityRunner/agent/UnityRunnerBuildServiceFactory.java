@@ -132,65 +132,15 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
             }
 
             private void readWindowsUnityVersion(@NotNull BuildAgentConfiguration agentConfiguration){
-                // check that user defined attributes are supported by the file store
                 String fileName = UnityRunnerConfiguration.getUnityPath(UnityRunnerConfiguration.Platform.Windows);
-                agentConfiguration.getConfigurationParameters();
-                Path file = Paths.get(fileName);
-                Loggers.AGENT.info("Readingfile: " + fileName);
-
-
+                Loggers.AGENT.info("Reading file to get buildNumber: " + fileName);
                 try{
-                    //String version  =  FileVersionInfo.getVersion(fileName);
-                    //Loggers.AGENT.info(version);
-                    short[] version =  FileVersionInfo.getVersion(fileName);
-                    Loggers.AGENT.info("LENGTH: " + version.length);
-                    for (int i = 0; i < version.length; i++) {
-                        Loggers.AGENT.info("FOUND: " + version[i]);
-                        //System.out.println(version[i]);
-                    }
+                    String buildNumber  =  FileVersionInfo.getShortVersionNumber(fileName);
+                    Loggers.AGENT.info("Found unity buildNumber: " + buildNumber);
+                    agentConfiguration.addConfigurationParameter("unity.buildNumber", buildNumber);
                 } catch(Exception e){
                     Loggers.AGENT.error("Exception getting unity version :" + e.getMessage());
                 }
-
-
-
-                /*try{
-                    FileStore store = Files.getFileStore(file);
-                    if (!store.supportsFileAttributeView(UserDefinedFileAttributeView.class)) {
-                        Loggers.AGENT.error("Cannot read unity version. UserDefinedFileAttributeView not supported on %s\n" + store.toString());
-                        return;
-                    }
-                    //FileAttributeView
-                    UserDefinedFileAttributeView view = Files.
-                    getFileAttributeView(file, UserDefinedFileAttributeView.class);
-
-                    // list user defined attributes
-                    agentConfiguration.addConfigurationParameter("unity.metaSize", new Integer(view.list().size()).toString());
-                    for (String name: view.list()) {
-                        Loggers.AGENT.info("Found attribute: " +  view.size(name) + " name: " + name);
-                        agentConfiguration.addConfigurationParameter("unity." + name, name);
-                    }
-
-                    /*String name = "Dateiversion";
-                    int size = view.size(name);
-                    ByteBuffer buf = ByteBuffer.allocateDirect(size);
-                    view.read(name, buf);
-                    buf.flip();
-                    System.out.println(Charset.defaultCharset().decode(buf).toString());
-                    * /
-                    //return;
-                    Loggers.AGENT.info("THIS IS MY LOG");
-                    agentConfiguration.addConfigurationParameter("unity.buildNumber", "FOUND");
-
-
-                } catch(Exception e){
-                    // had trouble detecting version
-                    Loggers.AGENT.error("Exception getting unity version :" + e.getMessage());
-                    agentConfiguration.addConfigurationParameter("unity.buildNumber", "XX");
-                } */
-
-
-
 
             }
         };

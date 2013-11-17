@@ -1,6 +1,4 @@
-
 package unityRunner.agent;
-
 
 import com.sun.jna.Library;
 import com.sun.jna.Memory;
@@ -46,45 +44,56 @@ public class FileVersionInfo
             super(p);
         }
     }
-    public static String getVersionNumber(String fileName) throws IOException{
-        try{
-            short[] numbers = getVersionNumbers(fileName);
-            String versionNumber = "";
-            for (int i = 0; i < numbers.length-1; i++) {
-                versionNumber += numbers[i];
-            }
-            return versionNumber;
-        }  catch(Exception e){
-            throw new IOException(e.getMessage());
-        }
 
-
+    public static String getLongVersionNumber(String fileName) throws IOException {
+        VS_FIXEDFILEINFO infoStructure = getFileInfoStructure(fileName);
+        return createLongVersionNumber(infoStructure);
     }
-    public static short[] getVersionNumbers(String fileName) throws IOException {
 
+    public static String getShortVersionNumber(String fileName) throws  IOException{
+        VS_FIXEDFILEINFO infoStructure = getFileInfoStructure(fileName);
+        return createShortVersionNumber(infoStructure);
+    }
+
+    public static String createShortVersionNumber(VS_FIXEDFILEINFO info){
+        short[] rtnData = getVersionNumberArray(info);
+        return ( rtnData[0] + "." + rtnData[1] + "." + rtnData[2]) ;
+    }
+
+    public static String createLongVersionNumber(VS_FIXEDFILEINFO info){
+        short[] rtnData = getVersionNumberArray(info);
+        return ( rtnData[0] + "." + rtnData[1] + "." + rtnData[2] + "." + rtnData[3]) ;
+    }
+
+    private static VS_FIXEDFILEINFO getFileInfoStructure(String fileName) throws  IOException{
         int dwDummy = 0;
-        int versionlength = Version.INSTANCE.GetFileVersionInfoSizeW(
-                fileName, dwDummy);
+        int versionLength = Version.INSTANCE.GetFileVersionInfoSizeW(fileName, dwDummy);
 
-        byte[] bufferarray = new byte[versionlength];
-        Pointer lpData = new Memory(bufferarray.length);
+        byte[] bufferArray = new byte[versionLength];
+        Pointer lpData = new Memory(bufferArray.length);
 
-        PointerByReference lplpBuffer = new PointerByReference();
+        PointerByReference lpBuffer = new PointerByReference();
         IntByReference puLen = new IntByReference();
-        boolean FileInfoResult = Version.INSTANCE.GetFileVersionInfoW(fileName, 0, versionlength, lpData);
+        boolean FileInfoResult = Version.INSTANCE.GetFileVersionInfoW(fileName, 0, versionLength, lpData);
         System.out.println(FileInfoResult);
-        int verQueryVal = Version.INSTANCE.VerQueryValueW(lpData,"\\", lplpBuffer, puLen);
+        int verQueryVal = Version.INSTANCE.VerQueryValueW(lpData,"\\", lpBuffer, puLen);
+        VS_FIXEDFILEINFO fileInfoStructure = new VS_FIXEDFILEINFO(lpBuffer.getValue());
+        fileInfoStructure.read();
 
-        VS_FIXEDFILEINFO lplpBufStructure = new VS_FIXEDFILEINFO(lplpBuffer.getValue());
-        lplpBufStructure.read();
+        return fileInfoStructure;
+    }
 
+    private static short[] getVersionNumberArray(VS_FIXEDFILEINFO info){
+        // Version Number is coded with Major Version X.X each Number in 2 bytes ( dwFileVersionMS )
+        // and Minor Version with X.X with also each Number in 2 bytes
         short[] rtnData = new short[4];
-        rtnData[0] = (short) (lplpBufStructure.dwFileVersionMS >> 16);
-        rtnData[1] = (short) (lplpBufStructure.dwFileVersionMS & 0xffff);
-        rtnData[2] = (short) (lplpBufStructure.dwFileVersionLS >> 16);
-        rtnData[3] = (short) (lplpBufStructure.dwFileVersionLS & 0xffff);
-
+        // Get the First Number of the Major by shift out the lower 2 bytes
+        rtnData[0] = (short) (info.dwFileVersionMS >> 16);
+        // Get the Second Number of the Major by set top 2 bytes to 0
+        rtnData[1] = (short) (info.dwFileVersionMS & 0xffff);
+        // Same for the Minor Version
+        rtnData[2] = (short) (info.dwFileVersionLS >> 16);
+        rtnData[3] = (short) (info.dwFileVersionLS & 0xffff);
         return rtnData;
-
     }
 }
