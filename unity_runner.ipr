@@ -197,9 +197,18 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="libraryTable">
+    <library name="Appache-commons">
+      <CLASSES>
+        <root url="file://C:/Program Files (x86)/AppacheCommons/commons-configuration-1.10" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+      <jarDirectory url="file://C:/Program Files (x86)/AppacheCommons/commons-configuration-1.10" recursive="false" />
+    </library>
     <library name="open-api">
       <CLASSES>
         <root url="file://$APPLICATION_HOME_DIR$/lib" />
+        <root url="jar://$USER_HOME$/Downloads/jna.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>

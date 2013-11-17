@@ -43,8 +43,11 @@ public class UnityRunnerConfiguration {
     final boolean ignoreLogBefore;
     final String ignoreLogBeforeText;
 
-    final static String windowsUnityPath = "C:\\Program Files (x86)\\Unity\\Editor\\unity.exe";
-    final static String macUnityPath = "/Applications/Unity/Unity.app/Contents/MacOS/Unity";
+    final static String windowsUnityDefaultPath = "C:\\Program Files (x86)\\Unity\\Editor\\unity.exe";
+    static String windowsUnityPath;
+    static String macUnityPath;
+    final static String maUnityDefaultPath ="/Applications/Unity/Unity.app/Contents/MacOS/Unity";
+
 
     final static String windowsLogPath = System.getenv("LOCALAPPDATA") + "\\Unity\\Editor\\Editor.log";
     final static String macLogPath = System.getProperty("user.home") + "/Library/Logs/Unity/Editor.log";
@@ -59,6 +62,8 @@ public class UnityRunnerConfiguration {
             platform = UnityRunnerConfiguration.Platform.Mac;
         }
         unityExecutablePath = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_UNITY_EXECUTABLE);
+        windowsUnityPath = getUnityPath();
+        macUnityPath = getUnityPath();
         quit = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_QUIT);
         batchMode = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_BATCH_MODE);
         noGraphics = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_NO_GRAPHICS);
@@ -112,9 +117,9 @@ public class UnityRunnerConfiguration {
     static String getUnityPath(Platform platform) {
         switch (platform) {
             case Windows:
-                return windowsUnityPath;
+                return windowsUnityDefaultPath;
             case Mac:
-                return macUnityPath;
+                return maUnityDefaultPath;
         }
 
         return null;

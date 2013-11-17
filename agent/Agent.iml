@@ -7,10 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Common" />
-    <orderEntry type="library" name="TeamcityLibs" level="project" />
-    <orderEntry type="library" name="open-api" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="module" module-name="Common" exported="" />
+    <orderEntry type="library" exported="" name="TeamcityLibs" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../lib/commons-io-2.1.jar!/" />
@@ -19,7 +18,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="IntelliJ IDEA Community Edition 12.1" level="application" />
+    <orderEntry type="library" exported="" name="IntelliJ IDEA Community Edition 12.1" level="application" />
+    <orderEntry type="library" exported="" name="Appache-commons" level="project" />
+    <orderEntry type="library" name="open-api" level="project" />
   </component>
 </module>
 
