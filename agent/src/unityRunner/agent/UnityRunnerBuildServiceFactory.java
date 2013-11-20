@@ -16,6 +16,7 @@
 
 package unityRunner.agent;
 
+
 import jetbrains.buildServer.agent.AgentBuildRunnerInfo;
 import jetbrains.buildServer.agent.BuildAgentConfiguration;
 import jetbrains.buildServer.agent.runner.CommandLineBuildService;
@@ -23,9 +24,7 @@ import jetbrains.buildServer.agent.runner.CommandLineBuildServiceFactory;
 import jetbrains.buildServer.log.Loggers;
 import org.jetbrains.annotations.NotNull;
 import unityRunner.common.PluginConstants;
-import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.plist.XMLPropertyListConfiguration;
-
 import java.io.File;
 
 public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFactory {
@@ -80,7 +79,8 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
                         if (agentConfiguration.getSystemInfo().isMac()) {
                             readMacUnityVersion(agentConfiguration);
                         } else {
-                            // find on windows - registry key?
+                            // find on windows - reading versionNumber from the exe ( Windows PE specification)
+                            readWindowsUnityVersion(agentConfiguration);
                         }
                     }
                 }
@@ -114,6 +114,24 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
                     Loggers.AGENT.error("Exception getting unity version :" + e.getMessage());
                 }
             }
+
+            private void readWindowsUnityVersion(@NotNull BuildAgentConfiguration agentConfiguration){
+                String fileName = UnityRunnerConfiguration.getUnityPath(UnityRunnerConfiguration.Platform.Windows);
+                Loggers.AGENT.info("Reading file to get buildNumber: " + fileName);
+                try{
+                    String buildNumber  =  FileVersionInfo.getShortVersionNumber(fileName);
+                    Loggers.AGENT.info("Found unity buildNumber: " + buildNumber);
+                    agentConfiguration.addConfigurationParameter("unity.buildNumber", buildNumber);
+                } catch(Exception e){
+                    Loggers.AGENT.error("Exception getting unity version :" + e.getMessage());
+                }
+
+            }
         };
     }
 }
+
+
+
+
+
