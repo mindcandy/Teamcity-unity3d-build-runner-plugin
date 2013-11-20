@@ -87,7 +87,8 @@
       <pathelement location="${basedir}/lib/commons-configuration-1.9.jar"/>
       <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
       <pathelement location="${basedir}/lib/commons-logging-1.1.1.jar"/>
-      <pathelement location="${basedir}/lib/jna.jar"/>
+      <pathelement location="${basedir}/lib/jna-3.4.0.jar"/>
+      <pathelement location="${basedir}/lib/platform-3.4.0.jar"/>
   </path>
   
   <path id="library.teamcity_third-party_server.classpath">
