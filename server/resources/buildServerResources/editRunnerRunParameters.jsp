@@ -73,8 +73,14 @@
 
 <props:selectSectionProperty name="argument.build_player" title="Build player:">
     <props:selectSectionPropertyContent value="" caption="<Don't build player>"/>
-    <props:selectSectionPropertyContent value="buildWindowsPlayer" caption="Windows Player"/>
-    <props:selectSectionPropertyContent value="buildOSXPlayer" caption="OSX Player"/>
+    <props:selectSectionPropertyContent value="buildWindowsPlayer" caption="Windows (32-bit) Player"/>
+    <props:selectSectionPropertyContent value="buildWindows64Player" caption="Windows (64-bit) Player"/>
+    <props:selectSectionPropertyContent value="buildOSXPlayer" caption="OSX (32-bit) Player"/>
+    <props:selectSectionPropertyContent value="buildOSX64Player" caption="OSX (64-bit) Player"/>
+    <props:selectSectionPropertyContent value="buildOSXUniversalPlayer" caption="OSX (Universal) Player"/>
+    <props:selectSectionPropertyContent value="buildLinux32Player" caption="Linux (32-bit) Player"/>
+    <props:selectSectionPropertyContent value="buildLinux64Player" caption="Linux (64-bit) Player"/>
+    <props:selectSectionPropertyContent value="buildLinuxUniversalPlayer" caption="Linux (Universal) Player"/>
     <props:selectSectionPropertyContent value="buildWebPlayer" caption="Web Player" />
 </props:selectSectionProperty>
 
