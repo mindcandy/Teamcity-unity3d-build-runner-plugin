@@ -36,9 +36,13 @@ On Nix and OSX this defaults to */home/<user>/.BuildServer*.
 
 On Windows is by default:%PROGRAMDATA%\JetBrains\TeamCity ( Windows 8, Teamcity Version 8.0.4 )
 
+Before compiling, it's important to update the build.properties file with the paths the Teamcity distribution and to the TEAMCITY_DATA_PATH folder. When the process is complete, ant should automatically copy the unityRunner.zip file to the Datapath folder. For example:
 
+```
+path.variable.teamcitydistribution=C:\\TeamCity
+teamcity.data.path=c:\\Teamcity
 
-Before compiling, it's important to update the build.properties file with the paths the Teamcity distribution and to the TEAMCITY_DATA_PATH folder. When the process is complete, ant should automatically copy the unityRunner.zip file to the Datapath folder.
+```
 
 #### Ant CLI
 
