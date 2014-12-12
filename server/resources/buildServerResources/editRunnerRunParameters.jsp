@@ -7,6 +7,19 @@
 
 <tr>
     <th>
+        <label for="unity.executable">Unity Executable: </label>
+    </th>
+    <td>
+        <props:textProperty name="unity.executable" style="width:32em;"/>
+        <span class="error" id="error_unity.executable"></span>
+        <span class="smallNote">
+             Optional, specify to use alternate Unity installation path
+        </span>
+    </td>
+</tr>
+
+<tr>
+    <th>
         <label for="teamcity.build.workingDir">Working Directory: </label>
     </th>
     <td>

@@ -11,6 +11,7 @@ public interface PluginConstants {
     final String RUNNER_DESCRIPTION = "Unity runner";
     final String OUTPUT_FILE_NAME = "UnityOutput.html";
 
+    final String PROPERTY_UNITY_EXECUTABLE_PATH = "unity.executable";
     final String PROPERTY_BATCH_MODE = "argument.batch_mode";
     final String PROPERTY_EXECUTE_METHOD = "argument.execute_method";
     final String PROPERTY_NO_GRAPHICS = "argument.no_graphics";

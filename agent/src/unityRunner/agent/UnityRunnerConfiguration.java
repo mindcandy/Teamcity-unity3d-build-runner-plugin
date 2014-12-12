@@ -22,6 +22,7 @@ public class UnityRunnerConfiguration {
         Mac
     }
 
+    final String unityExecutablePath;
     final boolean quit;
     final boolean batchMode;
     final boolean noGraphics;
@@ -62,6 +63,8 @@ public class UnityRunnerConfiguration {
         noGraphics = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_NO_GRAPHICS);
         projectPath = FilenameUtils.separatorsToSystem(
                 Parameters.getString(runnerParameters, PluginConstants.PROPERTY_PROJECT_PATH));
+        unityExecutablePath = FilenameUtils.separatorsToSystem(
+                Parameters.getString(runnerParameters, PluginConstants.PROPERTY_UNITY_EXECUTABLE_PATH));
         lineListPath = FilenameUtils.separatorsToSystem(Parameters.getString(runnerParameters, PluginConstants.PROPERTY_LINELIST_PATH));
         executeMethod = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_EXECUTE_METHOD);
         buildPlayer = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_BUILD_PLAYER);
@@ -85,6 +88,9 @@ public class UnityRunnerConfiguration {
     }
 
     String getUnityPath() {
+        if(unityExecutablePath != null && !unityExecutablePath.equals(""))
+            return unityExecutablePath;
+
         return getUnityPath(platform);
     }
 
