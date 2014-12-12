@@ -71,6 +71,7 @@ by looking in the default install location for each platform (Program Files or A
 
 Many of these relate to [Unity3d command line arguments](http://unity3d.com/support/documentation/Manual/Command%20Line%20Arguments.html)
 
+* Unity executable - overrides the default path of Unity executable (useful to run builds on multiple Unity versions)
 * Batch Mode - should be left enabled usually, enables the Unity -batchmode
 * No graphics - on Windows only, do not initialize a graphics device during a build to avoid errors when running without a good GPU. Equivalent to -nographics command line option
 * Project path - specifies the path (relative to Working directory) of Unity project to open
