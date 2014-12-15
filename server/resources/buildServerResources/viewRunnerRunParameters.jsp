@@ -4,6 +4,14 @@
 
 <div class="parameter">
   <c:choose>
+    <c:when test="${not empty propertiesBean.properties['unity.executable']}">
+      Working Directory: <strong><props:displayValue name="unity.executable" /></strong>
+    </c:when>
+  </c:choose>
+</div>
+
+<div class="parameter">
+  <c:choose>
     <c:when test="${not empty propertiesBean.properties['teamcity.build.workingDir']}">
       Working Directory: <strong><props:displayValue name="teamcity.build.workingDir" /></strong>
     </c:when>
