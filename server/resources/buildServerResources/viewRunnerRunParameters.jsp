@@ -4,8 +4,16 @@
 
 <div class="parameter">
   <c:choose>
+    <c:when test="${not empty propertiesBean.properties['argument.unity_version']}">
+      Unity Version: <strong><props:displayValue name="argument.unity_version" /></strong>
+    </c:when>
+  </c:choose>
+</div>
+
+<div class="parameter">
+  <c:choose>
     <c:when test="${not empty propertiesBean.properties['unity.executable']}">
-      Working Directory: <strong><props:displayValue name="unity.executable" /></strong>
+      Unity Executable: <strong><props:displayValue name="unity.executable" /></strong>
     </c:when>
   </c:choose>
 </div>
