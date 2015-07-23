@@ -78,14 +78,16 @@ public class UnityRunnerConfiguration {
                 Parameters.getString(runnerParameters, PluginConstants.PROPERTY_UNITY_EXECUTABLE_PATH));
 
         unityVersion = Parameters.getString(runnerParameters, PluginConstants.PROPERTY_UNITY_VERSION);
-        if (unityVersion != null) {
+        if (isSet(unityVersion)) {
             // look up the path to the specified unity version in Agent Configuration Parameters
             detectedUnityVersionPath = Parameters.getString(
                     agentConfiguration.getConfigurationParameters(),
                     "unity." + unityVersion);
         } else {
-            // TODO: use 'latest' version of unity that was previously found
-            detectedUnityVersionPath = null;
+            // default to use 'latest' version of unity that was previously found
+            detectedUnityVersionPath = Parameters.getString(
+                    agentConfiguration.getConfigurationParameters(),
+                    PluginConstants.CONFIGPARAM_UNITY_LATEST_VERSION);
         }
 
         lineListPath = FilenameUtils.separatorsToSystem(Parameters.getString(runnerParameters, PluginConstants.PROPERTY_LINELIST_PATH));
@@ -111,14 +113,18 @@ public class UnityRunnerConfiguration {
     }
 
 
+    /**
+     * get path to unity executable
+     * @return path to unity executable
+     */
     String getUnityPath() {
         //  executable path can be overridden
-        if (unityExecutablePath != null && !unityExecutablePath.equals("")) {
+        if (isSet(unityExecutablePath)) {
             return unityExecutablePath;
         }
 
         // use the detected path for this unity version
-        if (detectedUnityVersionPath != null && !detectedUnityVersionPath.equals("")) {
+        if (isSet(detectedUnityVersionPath)) {
             return detectedUnityVersionPath;
         }
 
@@ -180,7 +186,7 @@ public class UnityRunnerConfiguration {
      * @param locations list of locations
      */
     private static void addLocation(String location, List<String> locations) {
-        if ((location != null) && !location.isEmpty()) {
+        if (isSet(location)) {
             locations.add(location);
         }
     }
@@ -207,6 +213,15 @@ public class UnityRunnerConfiguration {
         return locations;
     }
 
+
+    /**
+     * test if string is set to a value
+     * @param str string to test
+     * @return true if str is not null or empty
+     */
+    private static boolean isSet(String str) {
+        return str != null && !str.isEmpty();
+    }
 }
 
 

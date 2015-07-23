@@ -152,7 +152,6 @@ public class UnityRunnerRunType extends RunType {
     @NotNull
     @Override
     public List<Requirement> getRunnerSpecificRequirements(@NotNull Map<String, String> runParameters) {
-
         List<Requirement> requirements = new ArrayList<>();
 
         // add parent requirements (if any)
@@ -162,11 +161,7 @@ public class UnityRunnerRunType extends RunType {
         if (unityVersion == null || unityVersion.isEmpty()) {
             // any version of unity will do
             requirements.add(
-                new Requirement(
-                    PluginConstants.CONFIGPARAM_UNITY_INSTALLED_NAME,
-                    PluginConstants.CONFIGPARAM_UNITY_INSTALLED_VALUE,
-                    RequirementType.EQUALS
-                )
+                new Requirement(PluginConstants.CONFIGPARAM_UNITY_LATEST_VERSION, "", RequirementType.EXISTS)
             );
         } else {
             // a specific version of Unity needs to be installed

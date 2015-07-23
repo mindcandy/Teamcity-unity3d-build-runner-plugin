@@ -100,21 +100,34 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
                     findUnityVersionsIn(location, platform, foundUnityVersions);
                 }
 
+                // find and record the *latest* version of Unity in unity.latest
+                String latestVersion = "0";
+                String latestVersionPath = null;
+
                 // add those unity versions to the Agent Configuration
                 for (Map.Entry<String,String> foundVersion : foundUnityVersions.entrySet()) {
+
+                    final String version = foundVersion.getKey();
+                    final String path = foundVersion.getValue();
+
                     // add by version number -> path to Unity executable
                     // e.g. unity.4.1.2.f1 = /Applications/Unity 4.1.2/Editor/Unity
                     agentConfiguration.addConfigurationParameter(
-                            PluginConstants.CONFIGPARAM_UNITY_BASE_VERSION + foundVersion.getKey(),
-                            foundVersion.getValue());
+                            PluginConstants.CONFIGPARAM_UNITY_BASE_VERSION + version,
+                            path);
+
+                    if (UnityVersionComparison.isGreaterThan(version, latestVersion)) {
+                        latestVersion = version;
+                        latestVersionPath = path;
+                    }
                 }
 
-                if (!foundUnityVersions.isEmpty()) {
-                    // we did find *a* version of unity
-                    // TODO: instead of this step, find and record the *latest* version of Unity in unity.latest
+                if (latestVersionPath != null) {
+                    // record the latest version found
                     agentConfiguration.addConfigurationParameter(
-                            PluginConstants.CONFIGPARAM_UNITY_INSTALLED_NAME,
-                            PluginConstants.CONFIGPARAM_UNITY_INSTALLED_VALUE);
+                            PluginConstants.CONFIGPARAM_UNITY_LATEST_VERSION,
+                            latestVersionPath);
+                    Loggers.AGENT.info("Latest unity version = " + latestVersion + " at: " + latestVersionPath);
 
                     // add log location (which is oddly the same regardless of version)
                     String logPath = UnityRunnerConfiguration.getUnityLogPath(platform);
@@ -167,7 +180,7 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
                     XMLPropertyListConfiguration config = new XMLPropertyListConfiguration(configFilePath.toFile());
                     String version = config.getString("CFBundleVersion");
-                    
+
                     if (version != null && unityExecutable.toFile().exists()) {
                         Loggers.AGENT.info("Found unity version = " + version + " at: " + unityExecutable.toString());
                         foundUnityVersions.put(version, unityExecutable.toString());

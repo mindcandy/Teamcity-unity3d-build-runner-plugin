@@ -35,6 +35,5 @@ public interface PluginConstants {
 
     final String CONFIGPARAM_UNITY_BASE_VERSION = "unity.";
     final String CONFIGPARAM_UNITY_LOG_PATH = "unity.log";
-    final String CONFIGPARAM_UNITY_INSTALLED_NAME = "unity";
-    final String CONFIGPARAM_UNITY_INSTALLED_VALUE = "installed";
+    final String CONFIGPARAM_UNITY_LATEST_VERSION = "unity.latest";
 }
