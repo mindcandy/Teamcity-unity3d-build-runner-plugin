@@ -55,7 +55,7 @@
 
     <artifact:dependencies filesetId="dependency.fileset">
         <dependency groupId="commons-io" artifactId="commons-io" version="2.4"/>
-        <dependency groupId="commons-configuration" artifactId="commons-configuration" version="1.9"/>
+        <dependency groupId="commons-configuration" artifactId="commons-configuration" version="1.10"/>
         <dependency groupId="net.java.dev.jna" artifactId="jna" version="3.4.0"/>
         <dependency groupId="net.java.dev.jna" artifactId="platform" version="3.4.0"/>
     </artifact:dependencies>

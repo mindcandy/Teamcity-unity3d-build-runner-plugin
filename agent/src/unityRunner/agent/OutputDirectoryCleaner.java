@@ -43,7 +43,9 @@ public class OutputDirectoryCleaner extends DirectoryWalker {
         if (".svn".equals(directory.getName())) {
             logger.log("Removing directory: " + directory.getPath());
             try {
-                FileUtils.deleteDirectory(directory);
+                if (directory.exists()) {
+                    FileUtils.deleteDirectory(directory);
+                }
             } catch (IOException e) {
                 logger.logException(e);
             }
@@ -58,7 +60,9 @@ public class OutputDirectoryCleaner extends DirectoryWalker {
         // delete file and add to list of deleted
         if (file.getName().endsWith(".meta")) {
             logger.log("Removing file: " + file.getPath());
-            file.delete();
+            if (file.exists()) {
+                file.delete();
+            }
             results.add(file);
         }
     }

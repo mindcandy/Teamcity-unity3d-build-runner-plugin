@@ -7,13 +7,27 @@
 
 <tr>
     <th>
+        <label for="argument.unity_version">Unity Version: </label>
+    </th>
+    <td>
+        <props:textProperty name="argument.unity_version" style="width:32em;"/>
+        <span class="error" id="error_argument.unity_version"></span>
+        <span class="smallNote">
+             Specify a version of Unity to use - e.g. 5.1.2f1. If left blank the latest version installed will be used.
+        </span>
+    </td>
+</tr>
+
+
+<tr>
+    <th>
         <label for="unity.executable">Unity Executable: </label>
     </th>
     <td>
         <props:textProperty name="unity.executable" style="width:32em;"/>
         <span class="error" id="error_unity.executable"></span>
         <span class="smallNote">
-             Optional, specify to use alternate Unity installation path
+             Optional, specify to use override the Unity executable path (if specifying a version of unity its best to leave blank).
         </span>
     </td>
 </tr>

@@ -32,6 +32,9 @@ public class UnityRunner {
      */
     @NotNull
     String getExecutable() {
+        logMessage(String.format("Unity version requested: %s ", configuration.unityVersion));
+        logMessage(String.format("Unity executable path: %s ", configuration.getUnityPath()));
+
         return configuration.getUnityPath();
     }
 
@@ -230,7 +233,12 @@ public class UnityRunner {
         try {
             if (outputDir.exists()) {
                 logMessage("Removing output directory: " + outputDir.getPath());
-                FileUtils.deleteDirectory(outputDir);
+                if (outputDir.isDirectory()) {
+                    // only delete directory if it is a directory!
+                    FileUtils.deleteDirectory(outputDir);
+                } else if (outputDir.isFile()) {
+                    outputDir.delete();
+                }
             }
 
             logMessage("Creating output directory: " + outputDir.getPath());
