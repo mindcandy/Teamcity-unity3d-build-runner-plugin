@@ -186,7 +186,7 @@ public class UnityRunnerConfiguration {
      * @param locations list of locations
      */
     private static void addLocation(String location, List<String> locations) {
-        if (isSet(location)) {
+        if (isSet(location) && !locations.contains(location)) {
             locations.add(location);
         }
     }
@@ -201,13 +201,24 @@ public class UnityRunnerConfiguration {
 
         switch (platform) {
             case Windows:
-                // on Windows we have potentially two locations for 32 and 64 bit apps
-                addLocation(System.getenv("ProgramFiles"), locations);
-                addLocation(System.getenv("%programfiles% (x86)"), locations);
+                //On Windows we have potentially two locations for 32 and 64 bit apps.
+                //But because we can have 32 or 64 bit Java on 32 or 64 bit Windows
+                //we need to check three environment variables.
+                //See: http://stackoverflow.com/a/27720921
+
+                String x64Location = System.getenv("ProgramFiles");
+                String x86Location = System.getenv("ProgramFiles(X86)");
+                String x64onx86 = System.getenv("ProgramW6432");
+
+                addLocation(x64Location, locations);
+                addLocation(x86Location, locations);
+                addLocation(x64onx86, locations);
+                break;
 
             case Mac:
                 // on Mac there is only one location for apps.
                 addLocation("/Applications", locations);
+                break;
         }
 
         return locations;
