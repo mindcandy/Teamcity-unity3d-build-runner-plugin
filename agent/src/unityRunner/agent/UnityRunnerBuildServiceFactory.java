@@ -97,6 +97,7 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
 
                 for(String location : UnityRunnerConfiguration.getPossibleUnityLocations(platform)) {
                     //  search for <location>/Unity * folders
+                    Loggers.AGENT.info("Search for Unity in " + location);
                     findUnityVersionsIn(location, platform, foundUnityVersions);
                 }
 
