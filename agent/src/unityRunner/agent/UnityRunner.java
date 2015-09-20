@@ -57,6 +57,8 @@ public class UnityRunner {
         if (!configuration.buildPlayer.equals("")) {
             args.add(String.format("-%s", configuration.buildPlayer));
             args.add(String.format("%s", configuration.buildPath));
+        } else {
+            args.add(String.format("--build_path=%s", configuration.buildPath));
         }
 
         if (!configuration.projectPath.equals("")) {
