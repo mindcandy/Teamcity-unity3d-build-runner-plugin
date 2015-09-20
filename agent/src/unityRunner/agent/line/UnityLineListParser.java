@@ -42,7 +42,9 @@ public class UnityLineListParser {
                     // Errors
                     new Line(".*?error CS\\d+.*?", Line.Type.Error),
                     new Line("Compilation failed:.*", Line.Type.Error),
-                    new Line("Scripts have compiler errors\\..*", Line.Type.Error));
+                    new Line("Scripts have compiler errors\\..*", Line.Type.Error),
+                    new Line("\\w+Exception.*", Line.Type.Error),
+                    new Line("ERROR.*", Line.Type.Error));
 
             return;
         }
