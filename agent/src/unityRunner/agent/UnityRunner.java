@@ -55,7 +55,7 @@ public class UnityRunner {
             args.add("-quit");
 
         if (!configuration.buildPlayer.equals("")) {
-            args.add(String.format("-%s", configuration.buildPlayer));
+            args.add(String.format("-buildTarget %s", configuration.buildPlayer));
             args.add(String.format("%s", configuration.buildPath));
         }
 

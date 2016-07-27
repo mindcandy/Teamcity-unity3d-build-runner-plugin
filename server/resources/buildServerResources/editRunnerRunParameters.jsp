@@ -99,16 +99,28 @@
 </tr>
 
 <props:selectSectionProperty name="argument.build_player" title="Build player:">
-    <props:selectSectionPropertyContent value="" caption="<Don't build player>"/>
-    <props:selectSectionPropertyContent value="buildWindowsPlayer" caption="Windows (32-bit) Player"/>
-    <props:selectSectionPropertyContent value="buildWindows64Player" caption="Windows (64-bit) Player"/>
-    <props:selectSectionPropertyContent value="buildOSXPlayer" caption="OSX (32-bit) Player"/>
-    <props:selectSectionPropertyContent value="buildOSX64Player" caption="OSX (64-bit) Player"/>
-    <props:selectSectionPropertyContent value="buildOSXUniversalPlayer" caption="OSX (Universal) Player"/>
-    <props:selectSectionPropertyContent value="buildLinux32Player" caption="Linux (32-bit) Player"/>
-    <props:selectSectionPropertyContent value="buildLinux64Player" caption="Linux (64-bit) Player"/>
-    <props:selectSectionPropertyContent value="buildLinuxUniversalPlayer" caption="Linux (Universal) Player"/>
-    <props:selectSectionPropertyContent value="buildWebPlayer" caption="Web Player" />
+    <props:selectSectionPropertyContent value="StandaloneOSXUniversal" caption="Build a universal OSX standalone"/>
+    <props:selectSectionPropertyContent value="StandaloneOSXIntel" caption="Build an OS X standalone (Intel only)"/>
+    <props:selectSectionPropertyContent value="StandaloneWindows" caption="Build a Windows standalone"/>
+    <props:selectSectionPropertyContent value="iOS" caption="Build an iOS player"/>
+    <props:selectSectionPropertyContent value="PS3" caption="Build a PS3 Standalone"/>
+    <props:selectSectionPropertyContent value="XBOX360" caption="Build a XBox Standalone"/>
+    <props:selectSectionPropertyContent value="Android" caption="Build an Android "/>apk standalone app"/>
+    <props:selectSectionPropertyContent value="StandaloneLinux" caption="Build a Linux standalone"/>
+    <props:selectSectionPropertyContent value="StandaloneWindows64" caption="Build a Windows 64-bit standalone"/>
+    <props:selectSectionPropertyContent value="WebGL" caption="WebGL"/>
+    <props:selectSectionPropertyContent value="WSAPlayer" caption="Build an Windows Store Apps player"/>
+    <props:selectSectionPropertyContent value="StandaloneLinux64" caption="Build a Linux 64-bit standalone"/>
+    <props:selectSectionPropertyContent value="StandaloneLinuxUniversal" caption="Build a Linux universal standalone"/>
+    <props:selectSectionPropertyContent value="StandaloneOSXIntel64" caption="Build an OSX Intel 64-bit standalone"/>
+    <props:selectSectionPropertyContent value="Tizen" caption="Build a Tizen player"/>
+    <props:selectSectionPropertyContent value="PSP2" caption="Build a PS Vita Standalone"/>
+    <props:selectSectionPropertyContent value="PS4" caption="Build a PS4 Standalone"/>
+    <props:selectSectionPropertyContent value="XboxOne" caption="Build a Xbox One Standalone"/>
+    <props:selectSectionPropertyContent value="SamsungTV" caption="Build to Samsung Smart TV platform"/>
+    <props:selectSectionPropertyContent value="Nintendo3DS" caption="Build to Nintendo 3DS platform"/>
+    <props:selectSectionPropertyContent value="WiiU" caption="Build a Wii U standalone"/>
+    <props:selectSectionPropertyContent value="tvOS"/>
 </props:selectSectionProperty>
 
 <tr>
